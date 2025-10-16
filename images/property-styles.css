@@ -1,0 +1,68 @@
+/* Property Image Styles - Generate actual images from these */
+
+/* Property 1 - Modern Villa */
+.property1-bg {
+    width: 400px;
+    height: 300px;
+    background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.property1-bg::before {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    top: 80px;
+    left: 60px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+}
+
+.property1-bg::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    top: 60px;
+    right: 80px;
+}
+
+/* Property 2 - Penthouse */
+.property2-bg {
+    width: 400px;
+    height: 300px;
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #5D6D7E 100%);
+    position: relative;
+}
+
+.property2-bg::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 80px;
+    background: rgba(212, 175, 55, 0.8);
+    top: 100px;
+    left: 100px;
+    border-radius: 8px;
+}
+
+/* Property 3 - Townhouse */
+.property3-bg {
+    width: 400px;
+    height: 300px;
+    background: linear-gradient(135deg, #27AE60 0%, #2ECC71 50%, #58D68D 100%);
+    position: relative;
+}
+
+/* Property 4 - Waterfront */
+.property4-bg {
+    width: 400px;
+    height: 300px;
+    background: linear-gradient(135deg, #3498DB 0%, #5DADE2 50%, #85C1E9 100%);
+    position: relative;
+}

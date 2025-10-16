@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Lucid Hills</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #f5f5f5; 
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Lucid Hills - Simple Test</h1>
+    <div class="test-card">
+        <h2>Site Test</h2>
+        <p>This is a simple test to verify basic functionality.</p>
+        <button onclick="alert('Working!')">Test Button</button>
+    </div>
+    
+    <div class="test-card">
+        <h2>External Resources Test</h2>
+        <p>Testing if external resources load:</p>
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=150&fit=crop" alt="Test Image" style="max-width: 200px;">
+    </div>
+    
+    <script>
+        console.log('Simple test page loaded successfully');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded successfully');
+        });
+    </script>
+</body>
+</html>

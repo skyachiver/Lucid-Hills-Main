@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Properties - Lucid Hills</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        /* Properties Page Specific Styles */
+        .properties-hero {
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #1a3a52 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .properties-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" x="50" y="50" fill="rgba(189,153,117,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .properties-hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .properties-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+
+        .properties-container {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .filters-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+
+        .status-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .status-filters label {
+            font-weight: 600;
+            color: var(--navy-blue);
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+
+        .status-btn {
+            padding: 10px 25px;
+            border: 2px solid var(--light-gray);
+            background: var(--white);
+            color: var(--dark-gray);
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .status-btn:hover {
+            border-color: var(--golden-accent);
+            color: var(--golden-accent);
+        }
+
+        .status-btn.active {
+            background: var(--golden-accent);
+            color: var(--white);
+            border-color: var(--golden-accent);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--navy-blue);
+            font-size: 0.9rem;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 12px 15px;
+            border: 1.5px solid var(--light-gray);
+            border-radius: 10px;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--golden-accent);
+            box-shadow: 0 0 0 3px rgba(189, 153, 117, 0.1);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .apply-filters-btn {
+            background: var(--navy-blue);
+            color: var(--white);
+        }
+
+        .apply-filters-btn:hover {
+            background: var(--golden-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(189, 153, 117, 0.3);
+        }
+
+        .reset-filters-btn {
+            background: transparent;
+            color: var(--navy-blue);
+            border: 2px solid var(--navy-blue);
+        }
+
+        .reset-filters-btn:hover {
+            background: var(--navy-blue);
+            color: var(--white);
+        }
+
+        .properties-results {
+            margin-bottom: 30px;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .results-count {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+
+        .results-count strong {
+            color: var(--navy-blue);
+            font-weight: 600;
+        }
+
+        .sort-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sort-dropdown label {
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+
+        .sort-dropdown select {
+            padding: 10px 15px;
+            border: 1.5px solid var(--light-gray);
+            border-radius: 10px;
+            font-family: var(--font-sans);
+            background: var(--white);
+            cursor: pointer;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .pagination-btn {
+            padding: 10px 18px;
+            border: 2px solid var(--navy-blue);
+            background: var(--white);
+            color: var(--navy-blue);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--navy-blue);
+            color: var(--white);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn.active {
+            background: var(--golden-accent);
+            border-color: var(--golden-accent);
+            color: var(--white);
+        }
+
+        /* Tablet Optimization */
+        @media (max-width: 1024px) {
+            .properties-hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .properties-hero p {
+                font-size: 1rem;
+            }
+
+            .filters-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .properties-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .property-card h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .properties-hero {
+                padding: 100px 0 60px;
+            }
+
+            .properties-hero h1 {
+                font-size: 2rem;
+            }
+
+            .properties-hero p {
+                font-size: 0.95rem;
+            }
+
+            .filter-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .filter-label {
+                font-size: 0.9rem;
+            }
+
+            select {
+                font-size: 0.9rem;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .property-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .property-card p {
+                font-size: 0.85rem;
+            }
+
+            .property-price {
+                font-size: 1.1rem;
+            }
+
+            .view-details-btn {
+                font-size: 0.85rem;
+                padding: 10px 20px;
+            }
+
+            .filter-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .filter-btn {
+                width: 100%;
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .pagination-btn {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Footer Override */
+        .footer {
+            background: #11293d;
+            color: var(--off-white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo .logo-text {
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--white);
+        }
+
+        /* Title Fonts */
+        .properties-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+
+        .property-card h3 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+
+        .filter-section h2 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+
+        /* Body Text Fonts - STRICT CLIENT STANDARDS */
+        body {
+            font-family: 'Montserrat', 'Poppins', sans-serif;
+        }
+
+        /* Script Font - Lucid Hills Brand */
+        .logo-text {
+            font-family: 'Great Vibes', 'Allura', cursive;
+        }
+
+        /* Sans-Serif - All Properties/Content Text */
+        .properties-hero p,
+        .filter-label,
+        .property-card p,
+        .property-location,
+        .property-details,
+        .property-price,
+        .filter-btn,
+        .view-details-btn,
+        input,
+        select,
+        button,
+        p,
+        span {
+            font-family: 'Montserrat', 'Poppins', sans-serif;
+        }
+
+        .property-status {
+            font-family: 'Montserrat', 'Poppins', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Serif - Monogram, Titles, Headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Assets/white logo.png" alt="Lucid Hills Logo">
+                <span class="logo-text">Lucid Hills</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="properties.html" class="nav-link active">Properties</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Blogs</a>
+            </div>
+            <a href="index.html#contact" class="nav-cta-btn">Let's Talk →</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Properties Hero -->
+    <section class="properties-hero">
+        <div class="container">
+            <h1>All Properties</h1>
+            <p>Discover your dream property from our exclusive collection</p>
+        </div>
+    </section>
+
+    <!-- Properties Container -->
+    <section class="properties-container">
+        <div class="container">
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <!-- Status Filter Buttons -->
+                <div class="status-filters">
+                    <label>Status:</label>
+                    <button class="status-btn active" data-status="">All</button>
+                    <button class="status-btn" data-status="Featured">Featured</button>
+                    <button class="status-btn" data-status="New">New</button>
+                    <button class="status-btn" data-status="Hot">Hot Deal</button>
+                </div>
+
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label for="propertyType">Property Type</label>
+                        <select id="propertyType">
+                            <option value="">All Types</option>
+                            <option value="villa">Villa</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="penthouse">Penthouse</option>
+                            <option value="townhouse">Townhouse</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="location">Location</label>
+                        <select id="location">
+                            <option value="">All Locations</option>
+                            <option value="emirates-hills">Emirates Hills</option>
+                            <option value="downtown-dubai">Downtown Dubai</option>
+                            <option value="dubai-marina">Dubai Marina</option>
+                            <option value="palm-jumeirah">Palm Jumeirah</option>
+                            <option value="arabian-ranches">Arabian Ranches</option>
+                            <option value="jumeirah-beach">Jumeirah Beach</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <select id="bedrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="minPrice">Min Price (AED)</label>
+                        <input type="number" id="minPrice" placeholder="e.g., 1000000">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="maxPrice">Max Price (AED)</label>
+                        <input type="number" id="maxPrice" placeholder="e.g., 10000000">
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="filter-btn reset-filters-btn">Reset Filters</button>
+                    <button class="filter-btn apply-filters-btn">Apply Filters</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="properties-results">
+                <div class="results-header">
+                    <div class="results-count">
+                        Showing <strong>1-12</strong> of <strong>24</strong> properties
+                    </div>
+                    <div class="sort-dropdown">
+                        <label for="sortBy">Sort by:</label>
+                        <select id="sortBy">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                            <option value="bedrooms">Bedrooms</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Properties Grid -->
+                <div class="properties-grid">
+                    <!-- Property Card 1 -->
+                    <div class="property-card hover-lift" data-type="villa" data-location="emirates-hills" data-bedrooms="4" data-price="9000000" data-status="Featured">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=250&fit=crop&crop=faces" alt="Modern Villa">
+                            <div class="property-badge">Featured</div>
+                            <div class="property-price">AED 9,000,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Modern Luxury Villa</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Emirates Hills, Dubai</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 4 Beds</span>
+                                <span><i class="fas fa-bath"></i> 3 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 3,200 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 2 -->
+                    <div class="property-card hover-lift" data-type="penthouse" data-location="downtown-dubai" data-bedrooms="3" data-price="6800000" data-status="New">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=250&fit=crop&crop=faces" alt="Penthouse Suite">
+                            <div class="property-badge">New</div>
+                            <div class="property-price">AED 6,800,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Elegant Penthouse Suite</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Downtown Dubai, UAE</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 3 Beds</span>
+                                <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 2,800 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 3 -->
+                    <div class="property-card hover-lift" data-type="townhouse" data-location="dubai-marina" data-bedrooms="3" data-price="4400000" data-status="">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=400&h=250&fit=crop&crop=faces" alt="Contemporary Townhouse">
+                            <div class="property-price">AED 4,400,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Contemporary Townhouse</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Dubai Marina, UAE</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 3 Beds</span>
+                                <span><i class="fas fa-bath"></i> 2.5 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 2,400 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 4 -->
+                    <div class="property-card hover-lift" data-type="apartment" data-location="palm-jumeirah" data-bedrooms="2" data-price="3500000" data-status="Hot">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=250&fit=crop&crop=faces" alt="Waterfront Apartment">
+                            <div class="property-badge">Hot</div>
+                            <div class="property-price">AED 3,500,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Waterfront Apartment</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Palm Jumeirah, Dubai</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 2 Beds</span>
+                                <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 1,800 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 5 -->
+                    <div class="property-card hover-lift" data-type="villa" data-location="arabian-ranches" data-bedrooms="5" data-price="12500000" data-status="Featured">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=250&fit=crop&crop=faces" alt="Luxury Estate">
+                            <div class="property-badge">Featured</div>
+                            <div class="property-price">AED 12,500,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Luxury Estate</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Arabian Ranches, Dubai</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 5 Beds</span>
+                                <span><i class="fas fa-bath"></i> 4 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 4,500 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 6 -->
+                    <div class="property-card hover-lift" data-type="villa" data-location="jumeirah-beach" data-bedrooms="4" data-price="8200000" data-status="New">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&h=250&fit=crop&crop=faces" alt="Beach Villa">
+                            <div class="property-badge">New</div>
+                            <div class="property-price">AED 8,200,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Beachfront Villa</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Jumeirah Beach, Dubai</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 4 Beds</span>
+                                <span><i class="fas fa-bath"></i> 3.5 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 3,800 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 7 -->
+                    <div class="property-card hover-lift" data-type="villa" data-location="emirates-hills" data-bedrooms="4" data-price="7200000" data-status="">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400&h=250&fit=crop&crop=faces" alt="Garden Villa">
+                            <div class="property-price">AED 7,200,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Garden Villa with Pool</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Emirates Hills, Dubai</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 4 Beds</span>
+                                <span><i class="fas fa-bath"></i> 3 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 3,500 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 8 -->
+                    <div class="property-card hover-lift" data-type="apartment" data-location="downtown-dubai" data-bedrooms="3" data-price="5500000" data-status="Hot">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&h=250&fit=crop&crop=faces" alt="Sky Apartment">
+                            <div class="property-badge">Hot</div>
+                            <div class="property-price">AED 5,500,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Sky View Apartment</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Downtown Dubai, UAE</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 3 Beds</span>
+                                <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 2,200 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 9 -->
+                    <div class="property-card hover-lift" data-type="apartment" data-location="dubai-marina" data-bedrooms="2" data-price="2800000" data-status="">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=250&fit=crop&crop=faces" alt="Modern Condo">
+                            <div class="property-price">AED 2,800,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Modern Condominium</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Dubai Marina, UAE</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 2 Beds</span>
+                                <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 1,600 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 10 -->
+                    <div class="property-card hover-lift" data-type="penthouse" data-location="palm-jumeirah" data-bedrooms="5" data-price="10500000" data-status="Featured">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=250&fit=crop&crop=faces" alt="Luxury Duplex">
+                            <div class="property-badge">Featured</div>
+                            <div class="property-price">AED 10,500,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Luxury Duplex Penthouse</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Palm Jumeirah, Dubai</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 5 Beds</span>
+                                <span><i class="fas fa-bath"></i> 4 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 4,200 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 11 -->
+                    <div class="property-card hover-lift" data-type="villa" data-location="arabian-ranches" data-bedrooms="4" data-price="6200000" data-status="New">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=400&h=250&fit=crop&crop=faces" alt="Family Villa">
+                            <div class="property-badge">New</div>
+                            <div class="property-price">AED 6,200,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Spacious Family Villa</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Arabian Ranches, Dubai</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 4 Beds</span>
+                                <span><i class="fas fa-bath"></i> 3 Baths</span>
+                                <span><i class="fas fa-ruler-combined"></i> 3,000 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 12 -->
+                    <div class="property-card hover-lift" data-type="apartment" data-location="downtown-dubai" data-bedrooms="1" data-price="1800000" data-status="">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&h=250&fit=crop&crop=faces" alt="Studio Loft">
+                            <div class="property-price">AED 1,800,000</div>
+                        </div>
+                        <div class="property-info">
+                            <h3 class="property-title">Designer Studio Loft</h3>
+                            <p class="property-location"><i class="fas fa-map-marker-alt"></i>Downtown Dubai, UAE</p>
+                            <div class="property-features">
+                                <span><i class="fas fa-bed"></i> 1 Bed</span>
+                                <span><i class="fas fa-bath"></i> 1 Bath</span>
+                                <span><i class="fas fa-ruler-combined"></i> 850 sq ft</span>
+                            </div>
+                            <button class="view-details-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo and Description -->
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <img src="Assets/white logo.png" alt="Lucid Hills">
+                        <span class="logo-text">Lucid Hills</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner in UAE's luxury real estate market.
+                        We specialize in premium residential, commercial, and investment properties across Dubai, Abu Dhabi, and the Emirates.
+                    </p>
+                    
+                    <!-- Newsletter -->
+                    <div class="footer-newsletter">
+                        <h4>Get latest property update</h4>
+                        <form class="newsletter-form" id="newsletterForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="a59d6031-6785-41e8-90d0-d0bc69f650d7">
+                            <input type="hidden" name="subject" value="New Newsletter Subscription - Lucid Hills">
+                            <input type="hidden" name="from_name" value="Lucid Hills Newsletter">
+                            <input type="email" name="email" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Consulting</a></li>
+                        <li><a href="#">Buying</a></li>
+                        <li><a href="#">Selling</a></li>
+                        <li><a href="#">Rent</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Our Company -->
+                <div class="footer-section">
+                    <h4>Our Company</h4>
+                    <ul>
+                        <li><a href="#">Awards</a></li>
+                        <li><a href="#">Responsibilities</a></li>
+                        <li><a href="#">Career</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                    
+                    <!-- Social Media Links -->
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="copyright">Copyright © 2025 All right reserved</p>
+                <p class="footer-made-by">Made by <a href="https://ryzupmarketing.com/" target="_blank" rel="noopener noreferrer">Ryzup Marketing</a></p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <!-- Form submit handler for Web3Forms with onscreen feedback -->
+    <div id="formMessage" class="form-message" style="display:none; position:fixed; right:20px; bottom:20px; background:rgba(17,41,61,0.95); color:#fff; padding:14px 18px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.4); z-index:9999;"></div>
+    <script>
+    (function(){
+        function showMessage(text, success){
+            var el = document.getElementById('formMessage');
+            el.textContent = text;
+            el.style.background = success ? 'linear-gradient(90deg,#2ecc71,#27ae60)' : 'linear-gradient(90deg,#e74c3c,#c0392b)';
+            el.style.display = 'block';
+            setTimeout(function(){ el.style.display = 'none'; }, 5000);
+        }
+
+        function handleSubmit(form){
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                var submitBtn = form.querySelector('[type="submit"]');
+                var origText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending...';
+
+                var data = new FormData(form);
+
+                fetch(form.action, {
+                    method: form.method || 'POST',
+                    body: data
+                }).then(function(resp){
+                    return resp.json();
+                }).then(function(json){
+                    if(json.success){
+                        showMessage('Submitted successfully. Thank you!', true);
+                        form.reset();
+                    } else {
+                        showMessage(json.message || 'Submission failed. Please try again.', false);
+                    }
+                }).catch(function(err){
+                    console.error(err);
+                    showMessage('Network error. Please try again later.', false);
+                }).finally(function(){
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = origText;
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            var news = document.getElementById('newsletterForm');
+            if(news) handleSubmit(news);
+            
+            // Properties Page Specific JavaScript
+            // Filter functionality
+            let currentStatus = '';
+            const applyFiltersBtn = document.querySelector('.apply-filters-btn');
+            const resetFiltersBtn = document.querySelector('.reset-filters-btn');
+            const statusBtns = document.querySelectorAll('.status-btn');
+            const propertyCards = document.querySelectorAll('.property-card');
+
+            // Status button functionality
+            statusBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    statusBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentStatus = this.dataset.status;
+                    applyFilters();
+                });
+            });
+
+            function applyFilters() {
+                // Get filter values
+                const propertyType = document.getElementById('propertyType').value;
+                const location = document.getElementById('location').value;
+                const bedrooms = document.getElementById('bedrooms').value;
+                const minPrice = document.getElementById('minPrice').value;
+                const maxPrice = document.getElementById('maxPrice').value;
+
+                let visibleCount = 0;
+
+                propertyCards.forEach(card => {
+                    let show = true;
+
+                    // Status filter
+                    if (currentStatus && card.dataset.status !== currentStatus) {
+                        show = false;
+                    }
+
+                    // Property type filter
+                    if (propertyType && card.dataset.type !== propertyType) {
+                        show = false;
+                    }
+
+                    // Location filter
+                    if (location && card.dataset.location !== location) {
+                        show = false;
+                    }
+
+                    // Bedrooms filter
+                    if (bedrooms && parseInt(card.dataset.bedrooms) < parseInt(bedrooms)) {
+                        show = false;
+                    }
+
+                    // Price filter
+                    const cardPrice = parseInt(card.dataset.price);
+                    if (minPrice && cardPrice < parseInt(minPrice)) {
+                        show = false;
+                    }
+                    if (maxPrice && cardPrice > parseInt(maxPrice)) {
+                        show = false;
+                    }
+
+                    if (show) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Update results count
+                const resultsCount = document.querySelector('.results-count');
+                resultsCount.innerHTML = `Showing <strong>${visibleCount}</strong> of <strong>12</strong> properties`;
+
+                if (visibleCount === 0) {
+                    showMessage('No properties match your filters', false);
+                }
+            }
+
+            if(applyFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', function() {
+                    applyFilters();
+                    showMessage('Filters applied successfully!', true);
+                });
+            }
+
+            if(resetFiltersBtn) {
+                resetFiltersBtn.addEventListener('click', function() {
+                    // Reset all filter inputs
+                    document.getElementById('propertyType').value = '';
+                    document.getElementById('location').value = '';
+                    document.getElementById('bedrooms').value = '';
+                    document.getElementById('minPrice').value = '';
+                    document.getElementById('maxPrice').value = '';
+                    
+                    // Reset status buttons
+                    statusBtns.forEach(b => b.classList.remove('active'));
+                    statusBtns[0].classList.add('active');
+                    currentStatus = '';
+                    
+                    // Show all properties
+                    propertyCards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    
+                    document.querySelector('.results-count').innerHTML = 'Showing <strong>12</strong> of <strong>12</strong> properties';
+                    showMessage('Filters reset', true);
+                });
+            }
+
+            // Sort functionality
+            const sortDropdown = document.getElementById('sortBy');
+            if(sortDropdown) {
+                sortDropdown.addEventListener('change', function() {
+                    const sortValue = this.value;
+                    const grid = document.querySelector('.properties-grid');
+                    const cardsArray = Array.from(propertyCards);
+
+                    cardsArray.sort((a, b) => {
+                        if (sortValue === 'price-low') {
+                            return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                        } else if (sortValue === 'price-high') {
+                            return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                        } else if (sortValue === 'bedrooms') {
+                            return parseInt(b.dataset.bedrooms) - parseInt(a.dataset.bedrooms);
+                        }
+                        return 0;
+                    });
+
+                    // Re-append cards in sorted order
+                    cardsArray.forEach(card => grid.appendChild(card));
+                    showMessage('Properties sorted', true);
+                });
+            }
+
+            // Pagination functionality
+            const paginationBtns = document.querySelectorAll('.pagination-btn');
+            paginationBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (!this.disabled && !this.classList.contains('active')) {
+                        // Remove active class from all buttons
+                        document.querySelectorAll('.pagination-btn.active').forEach(activeBtn => {
+                            activeBtn.classList.remove('active');
+                        });
+                        
+                        // Add active class to clicked button if it's a number
+                        if (!isNaN(this.textContent.trim())) {
+                            this.classList.add('active');
+                        }
+                        
+                        // Scroll to top
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // View Details buttons
+            const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+            viewDetailsBtns.forEach((btn, index) => {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('.property-card');
+                    const propertyId = index + 1; // IDs are 1-based
+                    window.location.href = 'property-details.html?id=' + propertyId;
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
