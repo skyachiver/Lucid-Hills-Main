@@ -33,8 +33,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" x="50" y="50" fill="rgba(189,153,117,0.1)"/></svg>');
-            opacity: 0.3;
+            background: url('Assets/pattern.png');
+            background-size: 400px 400px;
+            background-repeat: repeat;
+            opacity: 0.1;
+            z-index: 0;
         }
 
         .properties-hero h1 {
@@ -363,8 +366,29 @@
         /* Footer Override */
         .footer {
             background: #11293d;
+            background-image: url('Assets/site-footer-shape.png');
+            background-size: contain;
+            background-position: left center;
+            background-repeat: no-repeat;
             color: var(--off-white);
             padding: 80px 0 30px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(17, 41, 61, 0.95) 0%, rgba(17, 41, 61, 0.85) 50%, rgba(17, 41, 61, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .footer > * {
+            position: relative;
+            z-index: 2;
         }
 
         .footer-content {
@@ -450,10 +474,10 @@
             <div class="nav-menu">
                 <a href="index.html#home" class="nav-link">Home</a>
                 <a href="properties.html" class="nav-link active">Properties</a>
-                <a href="index.html#about" class="nav-link">About</a>
-                <a href="index.html#contact" class="nav-link">Blogs</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
             </div>
-            <a href="index.html#contact" class="nav-cta-btn">Let's Talk →</a>
+            <a href="index.html#contact-form" class="nav-cta-btn">Let's Talk →</a>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -542,7 +566,7 @@
             <div class="properties-results">
                 <div class="results-header">
                     <div class="results-count">
-                        Showing <strong>1-12</strong> of <strong>24</strong> properties
+                        Showing <strong>1-6</strong> of <strong>12</strong> properties
                     </div>
                     <div class="sort-dropdown">
                         <label for="sortBy">Sort by:</label>
@@ -785,13 +809,11 @@
 
                 <!-- Pagination -->
                 <div class="pagination">
-                    <button class="pagination-btn" disabled>
+                    <button class="pagination-btn prev-btn" disabled>
                         <i class="fas fa-chevron-left"></i> Previous
                     </button>
-                    <button class="pagination-btn active">1</button>
-                    <button class="pagination-btn">2</button>
-                    <button class="pagination-btn">3</button>
-                    <button class="pagination-btn">
+                    <!-- Page numbers will be dynamically generated here -->
+                    <button class="pagination-btn next-btn">
                         Next <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
@@ -856,17 +878,17 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#">Reviews</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                     
                     <!-- Social Media Links -->
                     <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61580970939133" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/lucidhillsproperties?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/lucid-hills-properties/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BulLEBX7PSmG6cVv80CHv2A%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -1068,25 +1090,101 @@
             }
 
             // Pagination functionality
-            const paginationBtns = document.querySelectorAll('.pagination-btn');
-            paginationBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    if (!this.disabled && !this.classList.contains('active')) {
-                        // Remove active class from all buttons
-                        document.querySelectorAll('.pagination-btn.active').forEach(activeBtn => {
-                            activeBtn.classList.remove('active');
-                        });
-                        
-                        // Add active class to clicked button if it's a number
-                        if (!isNaN(this.textContent.trim())) {
-                            this.classList.add('active');
-                        }
-                        
-                        // Scroll to top
+            const cardsPerPage = 6;
+            let currentPage = 1;
+            let totalPages = 1;
+            
+            function updateResultsCount(startIndex, endIndex, totalCards) {
+                const resultsCount = document.querySelector('.results-count');
+                const showing = Math.min(endIndex, totalCards);
+                resultsCount.innerHTML = `Showing <strong>${startIndex + 1}-${showing}</strong> of <strong>${totalCards}</strong> properties`;
+            }
+            
+            function updatePaginationButtons() {
+                const prevBtn = document.querySelector('.prev-btn');
+                const nextBtn = document.querySelector('.next-btn');
+                
+                // Enable/disable prev and next buttons
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage === totalPages;
+                
+                // Update active state on page number buttons
+                document.querySelectorAll('.pagination-btn.page-num').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (parseInt(btn.textContent) === currentPage) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+            
+            function showPage(page) {
+                const allCards = Array.from(document.querySelectorAll('.property-card'));
+                const totalCards = allCards.length;
+                const startIndex = (page - 1) * cardsPerPage;
+                const endIndex = startIndex + cardsPerPage;
+                
+                allCards.forEach((card, index) => {
+                    if (index >= startIndex && index < endIndex) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                updateResultsCount(startIndex, endIndex, totalCards);
+                currentPage = page;
+                updatePaginationButtons();
+            }
+            
+            // Initialize pagination
+            function initPagination() {
+                const allCards = document.querySelectorAll('.property-card');
+                totalPages = Math.ceil(allCards.length / cardsPerPage);
+                
+                // Generate page number buttons
+                const pagination = document.querySelector('.pagination');
+                const nextBtn = document.querySelector('.next-btn');
+                
+                // Remove any existing page number buttons
+                document.querySelectorAll('.pagination-btn.page-num').forEach(btn => btn.remove());
+                
+                // Insert page number buttons before the Next button
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageBtn = document.createElement('button');
+                    pageBtn.className = 'pagination-btn page-num';
+                    if (i === 1) pageBtn.classList.add('active');
+                    pageBtn.textContent = i;
+                    
+                    pageBtn.addEventListener('click', function() {
+                        showPage(i);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    
+                    pagination.insertBefore(pageBtn, nextBtn);
+                }
+                
+                // Set up prev/next button handlers
+                const prevBtn = document.querySelector('.prev-btn');
+                prevBtn.addEventListener('click', function() {
+                    if (currentPage > 1) {
+                        showPage(currentPage - 1);
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                 });
-            });
+                
+                nextBtn.addEventListener('click', function() {
+                    if (currentPage < totalPages) {
+                        showPage(currentPage + 1);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            }
+            
+            // Initialize pagination on load
+            initPagination();
+            
+            // Show first page on load
+            showPage(1);
 
             // View Details buttons
             const viewDetailsBtns = document.querySelectorAll('.view-details-btn');

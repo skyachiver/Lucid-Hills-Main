@@ -588,26 +588,10 @@ section {
 
 /* Featured Properties */
 .featured-properties {
-    background: var(--white);
-    background-image: url('../../Assets/bg.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: #f8f8f8;
     padding: 100px 0;
     position: relative;
     margin-top: 0;
-}
-
-.featured-properties::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
-    z-index: 1;
 }
 
 .featured-properties .container {
@@ -861,6 +845,160 @@ section {
     color: var(--white);
 }
 
+/* Simple Steps Section */
+.simple-steps-section {
+    background: var(--white);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.simple-steps-section .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.simple-steps-section .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--navy-blue);
+    margin-bottom: 15px;
+}
+
+.simple-steps-section .section-subtitle {
+    font-size: 1rem;
+    color: var(--medium-gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.step-card {
+    text-align: center;
+    position: relative;
+    padding: 30px 20px;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+}
+
+.step-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(189, 153, 117, 0.15) 0%, rgba(189, 153, 117, 0.25) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(189, 153, 117, 0.2);
+}
+
+.step-card:hover .step-icon {
+    background: linear-gradient(135deg, var(--golden-accent), var(--golden-light));
+    transform: scale(1.1);
+    border-color: var(--golden-accent);
+}
+
+.step-icon i {
+    font-size: 2.5rem;
+    color: var(--golden-accent);
+    transition: color 0.3s ease;
+}
+
+.step-card:hover .step-icon i {
+    color: var(--white);
+}
+
+.step-connector {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(189, 153, 117, 0.3) 20%, 
+        rgba(189, 153, 117, 0.3) 80%, 
+        transparent 100%
+    );
+    z-index: -1;
+}
+
+.step-card:last-child .step-connector {
+    display: none;
+}
+
+.step-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy-blue);
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.step-card:hover .step-title {
+    color: var(--golden-accent);
+}
+
+.step-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--medium-gray);
+}
+
+/* Responsive Design for Simple Steps */
+@media (max-width: 968px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .step-connector {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .simple-steps-section {
+        padding: 60px 0;
+    }
+    
+    .simple-steps-section .section-header {
+        margin-bottom: 50px;
+    }
+    
+    .simple-steps-section .section-title {
+        font-size: 2rem;
+    }
+    
+    .step-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .step-icon i {
+        font-size: 2rem;
+    }
+    
+    .step-title {
+        font-size: 1.3rem;
+    }
+}
+
 /* Neighborhood Guides */
 .neighborhood-guides {
     background: var(--light-gray);
@@ -995,9 +1133,30 @@ section {
     font-size: 0.9rem;
 }
 
-/* About Section */
+/* About Section - Why Choose Lucid Hills */
 .about-section {
     background: var(--white);
+    background-image: url('../Assets/pattern.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+}
+
+.about-section > * {
+    position: relative;
+    z-index: 2;
 }
 
 .about-content {
@@ -1050,12 +1209,17 @@ section {
 
 .about-image {
     position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .about-image img {
     width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
     border-radius: 15px;
-    box-shadow: 0 20px 40px var(--shadow-dark);
 }
 
 /* Amenities Section */
@@ -1995,11 +2159,191 @@ section {
     }
 }
 
+/* Get In Touch Section */
+.get-in-touch-section {
+    background: var(--off-white);
+    padding: 100px 0;
+}
+
+.get-in-touch-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: stretch;
+}
+
+.get-in-touch-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.get-in-touch-info .section-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--navy-blue);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.get-in-touch-description {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--medium-gray);
+    margin-bottom: 40px;
+}
+
+.contact-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.contact-info-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(189, 153, 117, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--golden-accent);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.contact-info-text h4 {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--navy-blue);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.contact-info-text p {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--medium-gray);
+    line-height: 1.6;
+}
+
+.get-directions-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--golden-accent);
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.get-directions-btn:hover {
+    background: var(--golden-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(189, 153, 117, 0.4);
+}
+
+.get-directions-btn i {
+    transition: transform 0.3s ease;
+}
+
+.get-directions-btn:hover i {
+    transform: translateX(5px);
+}
+
+.get-in-touch-map {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    min-height: 500px;
+}
+
+.get-in-touch-map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+}
+
+/* Get In Touch Responsive */
+@media (max-width: 992px) {
+    .get-in-touch-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .get-in-touch-map {
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .get-in-touch-section {
+        padding: 60px 0;
+    }
+
+    .get-in-touch-info .section-title {
+        font-size: 2rem;
+    }
+
+    .get-in-touch-description {
+        font-size: 0.95rem;
+    }
+
+    .contact-info-grid {
+        gap: 25px;
+    }
+
+    .contact-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .get-in-touch-map {
+        min-height: 350px;
+    }
+}
+
 /* Footer */
 .footer {
     background: #11293d;
+    background-image: url('../Assets/site-footer-shape.png');
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
     color: var(--off-white);
     padding: 80px 0 30px;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(17, 41, 61, 0.95) 0%, rgba(17, 41, 61, 0.85) 50%, rgba(17, 41, 61, 0.7) 100%);
+    z-index: 1;
+}
+
+.footer > * {
+    position: relative;
+    z-index: 2;
 }
 
 .footer-content {
@@ -2413,6 +2757,15 @@ section {
         gap: 30px;
     }
 
+    .about-image {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .about-image img {
+        border-radius: 12px;
+    }
+
     .section-title {
         font-size: 2rem;
     }
@@ -2734,3 +3087,5 @@ html {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--navy-blue);
 }
+ 
+ 

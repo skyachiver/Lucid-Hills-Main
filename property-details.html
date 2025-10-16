@@ -1234,8 +1234,29 @@
         /* Footer Override */
         .footer {
             background: #11293d;
+            background-image: url('Assets/site-footer-shape.png');
+            background-size: contain;
+            background-position: left center;
+            background-repeat: no-repeat;
             color: var(--off-white);
             padding: 80px 0 30px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(17, 41, 61, 0.95) 0%, rgba(17, 41, 61, 0.85) 50%, rgba(17, 41, 61, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .footer > * {
+            position: relative;
+            z-index: 2;
         }
 
         .footer-content {
@@ -1325,10 +1346,10 @@
             <div class="nav-menu">
                 <a href="index.html#home" class="nav-link">Home</a>
                 <a href="properties.html" class="nav-link">Properties</a>
-                <a href="index.html#about" class="nav-link">About</a>
-                <a href="index.html#contact" class="nav-link">Blogs</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
             </div>
-            <a href="index.html#contact" class="nav-cta-btn">Let's Talk →</a>
+            <a href="index.html#contact-form" class="nav-cta-btn">Let's Talk →</a>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -1440,7 +1461,7 @@
                             <!-- Features will be loaded dynamically -->
                         </div>
                         
-                        <button class="view-all-btn">VIEW ALL OFFER</button>
+                        <button class="view-all-btn" onclick="document.getElementById('makeOfferSection').scrollIntoView({behavior: 'smooth'})">VIEW ALL OFFER</button>
                     </div>
                     <div class="features-image slide-in-right">
                         <img id="featuresImage" src="" alt="Property Features">
@@ -1451,7 +1472,7 @@
     </section>
 
     <!-- Make an Offer Section -->
-    <section class="offer-section-wrapper">
+    <section class="offer-section-wrapper" id="makeOfferSection">
         <div class="container">
             <div class="offer-content">
                     <div class="offer-image-side slide-in-left">
@@ -1594,17 +1615,17 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#">Reviews</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                     
                     <!-- Social Media Links -->
                     <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61580970939133" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/lucidhillsproperties?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/lucid-hills-properties/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BulLEBX7PSmG6cVv80CHv2A%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>

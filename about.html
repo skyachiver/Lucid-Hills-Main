@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Lucid Hills Properties</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/image-styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Brand fonts: Script (Great Vibes / Allura), Sans (Montserrat / Poppins), Serif (Cinzel) -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Page Load Animation */
+        body {
+            opacity: 0;
+            animation: pageLoadFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes pageLoadFadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Page content wrapper for animation */
+        .page-content {
+            animation: contentSlideUp 1s ease-out forwards;
+        }
+
+        @keyframes contentSlideUp {
+            0% {
+                transform: translateY(20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Loader overlay */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #1a3a52 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 30px;
+            animation: logoFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(189, 153, 117, 0.2);
+            border-top: 4px solid var(--golden-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            margin-top: 20px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--golden-accent);
+            letter-spacing: 2px;
+        }
+
+        /* Staggered content animation */
+        .animate-on-load {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: contentFadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-on-load:nth-child(1) { animation-delay: 0.2s; }
+        .animate-on-load:nth-child(2) { animation-delay: 0.4s; }
+        .animate-on-load:nth-child(3) { animation-delay: 0.6s; }
+        .animate-on-load:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes contentFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #1a3a52 100%);
+            padding: 180px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('Assets/pattern.png');
+            background-size: 400px 400px;
+            background-repeat: repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .about-hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-hero p {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Company Story Section */
+        .company-story {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .story-text h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 20px;
+        }
+
+        .story-text h3 {
+            font-family: var(--font-script);
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .story-text p {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        /* Mission & Values Section */
+        .mission-values {
+            padding: 100px 0;
+            background: var(--off-white);
+            position: relative;
+        }
+
+        .mission-values::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('Assets/pattern.png');
+            background-size: 400px 400px;
+            background-repeat: repeat;
+            opacity: 0.05;
+        }
+
+        .mission-values .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+        }
+
+        .section-title .subtitle {
+            font-family: var(--font-script);
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .value-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #bd9975, #d4a574);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(189, 153, 117, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .value-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, #bd9975, #d4a574);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(189, 153, 117, 0.5),
+                        0 0 30px rgba(189, 153, 117, 0.4);
+        }
+
+        .value-card:hover .value-icon::before {
+            opacity: 0.3;
+        }
+
+        .value-icon i {
+            transition: transform 0.4s ease;
+        }
+
+        .value-card:hover .value-icon i {
+            transform: scale(1.15);
+        }
+
+        .value-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Awards Section */
+        .awards-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .awards-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .award-card {
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #1a3a52 100%);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .award-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('Assets/pattern.png');
+            background-size: 200px 200px;
+            opacity: 0.05;
+        }
+
+        .award-icon {
+            font-size: 3rem;
+            color: #bd9975;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 20px rgba(189, 153, 117, 0.8),
+                         0 0 40px rgba(189, 153, 117, 0.6),
+                         0 0 60px rgba(189, 153, 117, 0.4);
+            animation: iconGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes iconGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(189, 153, 117, 0.8),
+                             0 0 40px rgba(189, 153, 117, 0.6),
+                             0 0 60px rgba(189, 153, 117, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(189, 153, 117, 1),
+                             0 0 50px rgba(189, 153, 117, 0.8),
+                             0 0 80px rgba(189, 153, 117, 0.6);
+            }
+        }
+
+        .award-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .award-card p {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Careers Section */
+        .careers-section {
+            padding: 100px 0;
+            background: var(--off-white);
+        }
+
+        .careers-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .careers-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .careers-intro p {
+            font-family: var(--font-sans);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .job-listings {
+            display: grid;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .job-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateX(10px);
+        }
+
+        .job-info h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+        }
+
+        .job-meta {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .job-meta i {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+
+        .job-description {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, var(--gold), #d4a574);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .apply-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(189,153,117,0.4);
+        }
+
+        /* CTA Section */
+        .about-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #1a3a52 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('Assets/pattern.png');
+            background-size: 400px 400px;
+            opacity: 0.05;
+        }
+
+        .about-cta .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-cta h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .about-cta p {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-primary {
+            background: var(--gold);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(189,153,117,0.5);
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 15px 40px;
+            border: 2px solid var(--white);
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .cta-btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy-blue);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-hero p {
+                font-size: 1rem;
+            }
+
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .story-image img {
+                height: 350px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .job-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .about-cta h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn-primary,
+            .cta-btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <img src="Assets/white logo.png" alt="Lucid Hills" class="loader-logo">
+        <div class="loader-spinner"></div>
+        <p class="loader-text">LOADING...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Assets/white logo.png" alt="Lucid Hills Logo">
+                <span class="logo-text">Lucid Hills</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="properties.html" class="nav-link">Properties</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <a href="index.html#contact-form" class="nav-cta-btn">Let's Talk →</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content Wrapper -->
+    <div class="page-content">
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Lucid Hills</h1>
+            <p>Your trusted partner in UAE's luxury real estate market, delivering exceptional properties and unparalleled service excellence</p>
+        </div>
+    </section>
+
+    <!-- Company Story Section -->
+    <section class="company-story">
+        <div class="story-content">
+            <div class="story-text">
+                <h3>Our Story</h3>
+                <h2>Building Dreams Since Day One</h2>
+                <p>Lucid Hills Properties was founded with a singular vision: to redefine luxury real estate in the UAE. We understand that a home is more than just a property—it's where memories are made, dreams are realized, and futures are built.</p>
+                <p>With years of experience in Dubai's dynamic real estate market, we've established ourselves as a trusted name in luxury properties. Our commitment to excellence, attention to detail, and client-first approach have made us the preferred choice for discerning buyers and investors.</p>
+                <p>From stunning penthouses overlooking the Dubai skyline to exclusive villas in prestigious communities, we curate only the finest properties that meet our exacting standards of quality, location, and value.</p>
+            </div>
+            <div class="story-image">
+                <img src="Assets/Hero_image.avif" alt="Lucid Hills Office">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values Section -->
+    <section id="mission" class="mission-values">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission & Values</h2>
+                <p class="subtitle">What Drives Us</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We pursue excellence in every aspect of our service, from property selection to client care, ensuring exceptional results every time.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>Trust and transparency are the foundations of our business. We operate with complete honesty and ethical standards.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Client-Centric</h3>
+                    <p>Your dreams and goals are our priority. We tailor our services to meet your unique needs and exceed your expectations.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We embrace technology and innovative approaches to provide you with the best tools and insights for informed decisions.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partnership</h3>
+                    <p>We build long-term relationships based on mutual trust, respect, and shared success in the real estate journey.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Quality</h3>
+                    <p>We curate only the finest properties that meet our exacting standards of luxury, location, and lasting value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="awards-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Awards & Recognition</h2>
+                <p class="subtitle">Excellence Recognized</p>
+            </div>
+
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Best Luxury Agency</h3>
+                    <p>UAE Real Estate Awards 2024</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Customer Excellence</h3>
+                    <p>Dubai Property Summit 2024</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Top Performer</h3>
+                    <p>Gulf Real Estate Council 2023</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Innovation Leader</h3>
+                    <p>PropTech Excellence Awards 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="careers-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Join Our Team</h2>
+                <p class="subtitle">Career Opportunities</p>
+            </div>
+
+            <div class="careers-intro">
+                <p>At Lucid Hills, we believe our greatest asset is our people. We're always looking for talented, passionate individuals who share our commitment to excellence and want to be part of a dynamic, growing team in the luxury real estate sector.</p>
+            </div>
+
+            <div class="job-listings">
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>Senior Property Consultant</h3>
+                        <div class="job-meta">
+                            <span><i class="fas fa-map-marker-alt"></i>Dubai, UAE</span>
+                            <span style="margin-left: 20px;"><i class="fas fa-briefcase"></i>Full-time</span>
+                        </div>
+                        <p class="job-description">Lead luxury property sales and build lasting client relationships in Dubai's premium real estate market.</p>
+                    </div>
+                    <a href="index.html#contact-form" class="apply-btn">Apply Now</a>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>Marketing Specialist</h3>
+                        <div class="job-meta">
+                            <span><i class="fas fa-map-marker-alt"></i>Dubai, UAE</span>
+                            <span style="margin-left: 20px;"><i class="fas fa-briefcase"></i>Full-time</span>
+                        </div>
+                        <p class="job-description">Drive digital marketing strategies and campaigns for luxury real estate properties and brand development.</p>
+                    </div>
+                    <a href="index.html#contact-form" class="apply-btn">Apply Now</a>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-info">
+                        <h3>Customer Success Manager</h3>
+                        <div class="job-meta">
+                            <span><i class="fas fa-map-marker-alt"></i>Dubai, UAE</span>
+                            <span style="margin-left: 20px;"><i class="fas fa-briefcase"></i>Full-time</span>
+                        </div>
+                        <p class="job-description">Ensure exceptional client experiences and manage relationships throughout the property journey.</p>
+                    </div>
+                    <a href="index.html#contact-form" class="apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="about-cta">
+        <div class="container">
+            <h2>Ready to Find Your Dream Property?</h2>
+            <p>Let us help you discover the perfect luxury home in Dubai's most prestigious locations</p>
+            <div class="cta-buttons">
+                <a href="properties.html" class="cta-btn-primary">View Properties</a>
+                <a href="index.html#contact" class="cta-btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo and Description -->
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <img src="Assets/white logo.png" alt="Lucid Hills">
+                        <span class="logo-text">Lucid Hills</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner in UAE's luxury real estate market.
+                        We specialize in premium residential, commercial, and investment properties across Dubai, Abu Dhabi, and the Emirates.
+                    </p>
+                    
+                    <!-- Newsletter -->
+                    <div class="footer-newsletter">
+                        <h4>Get latest property update</h4>
+                        <form class="newsletter-form" id="newsletterForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="a59d6031-6785-41e8-90d0-d0bc69f650d7">
+                            <input type="hidden" name="subject" value="New Newsletter Subscription - Lucid Hills">
+                            <input type="hidden" name="from_name" value="Lucid Hills Newsletter">
+                            <input type="email" name="email" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Consulting</a></li>
+                        <li><a href="#">Buying</a></li>
+                        <li><a href="#">Selling</a></li>
+                        <li><a href="#">Rent</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Our Company -->
+                <div class="footer-section">
+                    <h4>Our Company</h4>
+                    <ul>
+                        <li><a href="about.html#awards">Awards</a></li>
+                        <li><a href="#">Responsibilities</a></li>
+                        <li><a href="about.html#careers">Career</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                    
+                    <!-- Social Media Links -->
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61580970939133" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/lucidhillsproperties?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/lucid-hills-properties/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BulLEBX7PSmG6cVv80CHv2A%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="copyright">Copyright © 2025 All right reserved</p>
+                <p class="footer-made-by">Made by <a href="https://ryzupmarketing.com/" target="_blank" rel="noopener noreferrer">Ryzup Marketing</a></p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!-- End Page Content Wrapper -->
+
+    <script src="js/script.js"></script>
+    
+    <!-- Page Load Animation Script -->
+    <script>
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.page-loader');
+            
+            // Add a minimum display time of 1 second for smooth experience
+            setTimeout(function() {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+
+        // Add animation classes to sections as they appear
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 1200 + (index * 150));
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        let isScrolled = false;
+
+        function updateNavbar() {
+            const shouldBeScrolled = window.scrollY > 50;
+            
+            if (shouldBeScrolled && !isScrolled) {
+                navbar.classList.add('scrolled');
+                isScrolled = true;
+            } else if (!shouldBeScrolled && isScrolled) {
+                navbar.classList.remove('scrolled');
+                isScrolled = false;
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbar, { passive: true });
+        
+        // Initial check for page load
+        updateNavbar();
+    </script>
+</body>
+</html>
