@@ -1851,6 +1851,15 @@
             // Enhanced 3D mouse tracking for property type cards
             const propertyTypeCards = document.querySelectorAll('.property-type-card');
             propertyTypeCards.forEach(card => {
+                // Add click handler to redirect to properties page with filter
+                card.addEventListener('click', function() {
+                    const propertyType = this.getAttribute('data-type');
+                    window.location.href = 'properties.html?type=' + propertyType;
+                });
+                
+                // Add cursor pointer style
+                card.style.cursor = 'pointer';
+                
                 card.addEventListener('mousemove', function(e) {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
@@ -1990,6 +1999,4 @@
     })();
     </script>
 </body>
-
 </html>
-

@@ -1258,6 +1258,10 @@
             var news = document.getElementById('newsletterForm');
             if(news) handleSubmit(news);
             
+            // Check for URL parameter from property type cards
+            const urlParams = new URLSearchParams(window.location.search);
+            const typeParam = urlParams.get('type');
+            
             // Properties Page Specific JavaScript
             // Category Tab Functionality
             const categoryTabs = document.querySelectorAll('.category-tab');
@@ -1578,6 +1582,24 @@
             
             // Initialize pagination on load
             initPagination();
+
+            // Apply filter from URL parameter if present
+            if (typeParam) {
+                const propertyTypeSelect = document.getElementById('propertyType');
+                if (propertyTypeSelect) {
+                    // Set the dropdown value
+                    propertyTypeSelect.value = typeParam;
+                    // Apply the filter
+                    applyFilters();
+                    // Scroll to properties section
+                    setTimeout(() => {
+                        const propertiesGrid = document.querySelector('.properties-grid');
+                        if (propertiesGrid) {
+                            propertiesGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 100);
+                }
+            }
 
             // View Details buttons
             const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
