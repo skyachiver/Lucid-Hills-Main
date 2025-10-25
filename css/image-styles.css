@@ -26,17 +26,7 @@
     opacity: 0;
 }
 
-.property-image::before,
-.neighborhood-image::before,
-.about-image::before {
-    content: '🏠';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
-    opacity: 0.3;
-}
+/* Removed house icon placeholder */
 
 /* Image loading states */
 .image-loading {

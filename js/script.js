@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCounters();
     initPropertySlider();
     initPremiumCards();
+    initFeaturedPropertiesSlider();
     
     console.log('Lucid Hills website with advanced animations initialized!');
 });
@@ -965,7 +966,286 @@ function initPropertiesSlider() {
 // Initialize properties slider
 document.addEventListener('DOMContentLoaded', function() {
     initPropertiesSlider();
+    initBackToTop();
+    initTestimonialsSlider();
 });
+
+// Back to Top Button Functionality
+function initBackToTop() {
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    if (!backToTopBtn) return;
+    
+    // Show/hide button based on scroll position
+    function toggleBackToTop() {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    }
+    
+    // Scroll to top when clicked
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    
+    // Initial check
+    toggleBackToTop();
+}
+
+// Featured Properties Slider Functionality
+function initFeaturedPropertiesSlider() {
+    const nextBtn = document.querySelector('.slider-next');
+    const prevBtn = document.querySelector('.slider-prev');
+    const sliderTrack = document.querySelector('.slider-track');
+    const sliderSection = document.querySelector('.featured-slider-section');
+    
+    if (!nextBtn || !prevBtn || !sliderTrack) {
+        console.log('Slider elements not found');
+        return;
+    }
+    
+    let isAnimating = false;
+    let autoPlayInterval = null;
+    let userInteracting = false;
+    
+    function moveNext() {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        const items = document.querySelectorAll('.slider-item');
+        if (items.length > 0) {
+            sliderTrack.appendChild(items[0]);
+        }
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
+    }
+    
+    function movePrev() {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        const items = document.querySelectorAll('.slider-item');
+        if (items.length > 0) {
+            sliderTrack.prepend(items[items.length - 1]);
+        }
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
+    }
+    
+    function startAutoPlay() {
+        if (userInteracting) return;
+        
+        stopAutoPlay();
+        autoPlayInterval = setInterval(() => {
+            if (!userInteracting) {
+                moveNext();
+            }
+        }, 3000); // Reduced from 5000ms to 3000ms (3 seconds)
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    // Next button click
+    nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        moveNext();
+        userInteracting = true;
+        stopAutoPlay();
+        setTimeout(() => {
+            userInteracting = false;
+            startAutoPlay();
+        }, 8000); // Resume after 8 seconds of no interaction
+    });
+    
+    // Previous button click
+    prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        movePrev();
+        userInteracting = true;
+        stopAutoPlay();
+        setTimeout(() => {
+            userInteracting = false;
+            startAutoPlay();
+        }, 8000); // Resume after 8 seconds of no interaction
+    });
+    
+    // Stop auto-play when user is in the section
+    if (sliderSection) {
+        sliderSection.addEventListener('mouseenter', function() {
+            userInteracting = true;
+            stopAutoPlay();
+        });
+        
+        sliderSection.addEventListener('mouseleave', function() {
+            userInteracting = false;
+            startAutoPlay();
+        });
+        
+        // Also stop on touch/click anywhere in the section
+        sliderSection.addEventListener('touchstart', function() {
+            userInteracting = true;
+            stopAutoPlay();
+            setTimeout(() => {
+                userInteracting = false;
+                startAutoPlay();
+            }, 8000);
+        });
+    }
+    
+    // Start auto-play
+    startAutoPlay();
+    
+    console.log('Featured Properties Slider initialized successfully!');
+}
+
+// ========================================
+// TESTIMONIALS SLIDER
+// ========================================
+function initTestimonialsSlider() {
+    const track = document.querySelector('.testimonials-track');
+    const prevBtn = document.querySelector('.testimonial-prev');
+    const nextBtn = document.querySelector('.testimonial-next');
+    const cards = document.querySelectorAll('.testimonial-card');
+    
+    if (!track || !prevBtn || !nextBtn || cards.length === 0) return;
+    
+    let currentIndex = 0;
+    let cardsToShow = 4;
+    let isAnimating = false;
+    
+    // Determine cards to show based on screen width
+    function updateCardsToShow() {
+        if (window.innerWidth <= 480) {
+            cardsToShow = 1;
+        } else if (window.innerWidth <= 768) {
+            cardsToShow = 2;
+        } else if (window.innerWidth <= 1200) {
+            cardsToShow = 3;
+        } else {
+            cardsToShow = 4;
+        }
+    }
+    
+    // Update slider position
+    function updateSlider() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 30;
+        const offset = -(currentIndex * (cardWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+    }
+    
+    // Next button
+    function moveNext() {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        const maxIndex = cards.length - cardsToShow;
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Loop back to start
+        }
+        updateSlider();
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
+    }
+    
+    // Previous button
+    function movePrev() {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        const maxIndex = cards.length - cardsToShow;
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = maxIndex; // Loop to end
+        }
+        updateSlider();
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', moveNext);
+    prevBtn.addEventListener('click', movePrev);
+    
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            updateCardsToShow();
+            currentIndex = 0;
+            updateSlider();
+        }, 250);
+    });
+    
+    // Initialize
+    updateCardsToShow();
+    updateSlider();
+    
+    console.log('Testimonials slider initialized successfully!');
+}
+
+// ========================================
+// COUNTRY CODE SELECTOR - RESPONSIVE
+// ========================================
+function updateCountryCodeDisplay() {
+    const select = document.querySelector('.country-code-select');
+    if (!select) return;
+    
+    const isMobile = window.innerWidth <= 768;
+    const options = select.querySelectorAll('option');
+    
+    options.forEach(option => {
+        const flag = option.getAttribute('data-flag');
+        const name = option.getAttribute('data-name');
+        const code = option.value;
+        
+        if (isMobile) {
+            // Mobile: Show country name and code
+            option.textContent = `${name} ${code}`;
+        } else {
+            // Desktop: Show flag and code
+            option.textContent = `${flag} ${code}`;
+        }
+    });
+}
+
+// Initialize and update on resize
+if (document.querySelector('.country-code-select')) {
+    updateCountryCodeDisplay();
+    
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            updateCountryCodeDisplay();
+        }, 250);
+    });
+}
 
 // Performance Monitoring
 if ('performance' in window) {
