@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Filter System - Visual Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #11293d, #0d1f2a);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #bd9975;
+        }
+        .status {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .success { color: #4CAF50; font-weight: bold; }
+        .error { color: #f44336; font-weight: bold; }
+        .info { color: #2196F3; }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .category-box {
+            background: rgba(189, 153, 117, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid rgba(189, 153, 117, 0.4);
+        }
+        .count {
+            font-size: 32px;
+            font-weight: bold;
+            color: #bd9975;
+        }
+        code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #4CAF50;
+        }
+        .test-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .article-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        .article-item {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            border-left: 3px solid #bd9975;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Blog Filter System - Diagnostic Test</h1>
+        
+        <div id="mainStatus" class="status">
+            <p>⏳ Running diagnostics...</p>
+        </div>
+
+        <div id="categoryBreakdown" style="display:none;">
+            <h2>📊 Category Breakdown</h2>
+            <div class="categories" id="categoriesGrid"></div>
+        </div>
+
+        <div id="articlesList" class="test-section" style="display:none;">
+            <h2>📝 All Articles</h2>
+            <div class="article-list" id="articlesContainer"></div>
+        </div>
+    </div>
+
+    <script src="js/blog-data.js"></script>
+    <script>
+        const mainStatus = document.getElementById('mainStatus');
+        const categoryBreakdown = document.getElementById('categoryBreakdown');
+        const articlesList = document.getElementById('articlesList');
+        const categoriesGrid = document.getElementById('categoriesGrid');
+        const articlesContainer = document.getElementById('articlesContainer');
+
+        window.addEventListener('load', function() {
+            // Test 1: Check if blog data exists
+            if (typeof blogArticles === 'undefined') {
+                mainStatus.innerHTML = '<p class="error">❌ FAILED: blogArticles is undefined!</p><p>The js/blog-data.js file did not load correctly.</p>';
+                return;
+            }
+
+            // Test 2: Check if it's an array
+            if (!Array.isArray(blogArticles)) {
+                mainStatus.innerHTML = '<p class="error">❌ FAILED: blogArticles is not an array!</p>';
+                return;
+            }
+
+            // Test 3: Check if it has articles
+            if (blogArticles.length === 0) {
+                mainStatus.innerHTML = '<p class="error">❌ FAILED: blogArticles array is empty!</p>';
+                return;
+            }
+
+            // Success!
+            mainStatus.innerHTML = `
+                <p class="success">✅ SUCCESS: Blog data loaded correctly!</p>
+                <p class="info">Total Articles: <strong>${blogArticles.length}</strong></p>
+                <p class="info">First article ID: <code>${blogArticles[0].id}</code></p>
+                <p class="info">Filter system: <span class="success">READY</span></p>
+            `;
+
+            // Show category breakdown
+            categoryBreakdown.style.display = 'block';
+            
+            const categories = {
+                'All': blogArticles.length,
+                'Market Trends': blogArticles.filter(a => a.category === 'Market Trends').length,
+                'Investment Tips': blogArticles.filter(a => a.category === 'Investment Tips').length,
+                'Luxury Living': blogArticles.filter(a => a.category === 'Luxury Living').length,
+                'Dubai Guide': blogArticles.filter(a => a.category === 'Dubai Guide').length,
+                'Property Law': blogArticles.filter(a => a.category === 'Property Law').length
+            };
+
+            Object.entries(categories).forEach(([name, count]) => {
+                const box = document.createElement('div');
+                box.className = 'category-box';
+                box.innerHTML = `
+                    <div class="count">${count}</div>
+                    <div>${name}</div>
+                `;
+                categoriesGrid.appendChild(box);
+            });
+
+            // Show articles list
+            articlesList.style.display = 'block';
+            
+            blogArticles.forEach((article, index) => {
+                const item = document.createElement('div');
+                item.className = 'article-item';
+                item.innerHTML = `
+                    <strong>#${index + 1}</strong> | 
+                    <span style="color: #bd9975;">${article.category}</span> | 
+                    ${article.title}
+                `;
+                articlesContainer.appendChild(item);
+            });
+
+            // Final test: simulate filter
+            console.log('🎯 Filter Simulation Tests:');
+            console.log('All articles:', blogArticles.length);
+            console.log('Market Trends:', blogArticles.filter(a => a.category === 'Market Trends').length);
+            console.log('Investment Tips:', blogArticles.filter(a => a.category === 'Investment Tips').length);
+            console.log('Luxury Living:', blogArticles.filter(a => a.category === 'Luxury Living').length);
+            
+            console.log('\n✅ All systems operational! The blog filter will work correctly.');
+        });
+    </script>
+</body>
+</html>

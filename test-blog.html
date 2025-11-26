@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Filter Test</title>
+</head>
+<body>
+    <h1>Blog Filter Test</h1>
+    <div id="status">Testing...</div>
+    
+    <script src="js/blog-data.js"></script>
+    <script>
+        const statusDiv = document.getElementById('status');
+        
+        if (typeof blogArticles !== 'undefined') {
+            statusDiv.innerHTML = `
+                <p style="color: green;">✓ Blog data loaded successfully!</p>
+                <p>Total articles: ${blogArticles.length}</p>
+                <h3>Categories breakdown:</h3>
+                <ul>
+                    <li>Market Trends: ${blogArticles.filter(a => a.category === 'Market Trends').length}</li>
+                    <li>Investment Tips: ${blogArticles.filter(a => a.category === 'Investment Tips').length}</li>
+                    <li>Luxury Living: ${blogArticles.filter(a => a.category === 'Luxury Living').length}</li>
+                    <li>Dubai Guide: ${blogArticles.filter(a => a.category === 'Dubai Guide').length}</li>
+                    <li>Property Law: ${blogArticles.filter(a => a.category === 'Property Law').length}</li>
+                </ul>
+            `;
+        } else {
+            statusDiv.innerHTML = '<p style="color: red;">✗ Blog data failed to load</p>';
+        }
+    </script>
+</body>
+</html>

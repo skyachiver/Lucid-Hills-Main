@@ -19,11 +19,22 @@
     <style>
         /* Properties Page Specific Styles */
         .properties-hero {
-            background: linear-gradient(135deg, var(--navy-blue) 0%, #1a3a52 100%);
-            padding: 120px 0 80px;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(189, 153, 117, 0.7) 0%, 
+                    rgba(189, 153, 117, 0.5) 30%,
+                    rgba(17, 41, 61, 0.8) 70%,
+                    rgba(17, 41, 61, 0.9) 100%
+                ),
+                url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=1080&fit=crop&q=80') center/cover no-repeat;
+            padding: 140px 0 80px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .properties-hero::before {
@@ -33,27 +44,33 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('Assets/pattern.png');
-            background-size: 400px 400px;
-            background-repeat: repeat;
-            opacity: 0.1;
-            z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(189, 153, 117, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(17, 41, 61, 0.3) 0%, transparent 40%);
+            opacity: 1;
+            pointer-events: none;
         }
 
         .properties-hero h1 {
             font-family: var(--font-serif);
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: var(--white);
             margin-bottom: 20px;
             position: relative;
             z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .properties-hero p {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.85);
             position: relative;
             z-index: 1;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .properties-container {
@@ -505,6 +522,15 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="page-loader" id="pageLoader">
+        <img src="Assets/white logo.png" alt="Lucid Hills" class="loader-logo">
+        <div class="loader-quote" id="loaderQuote"></div>
+        <div class="loader-progress">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -516,9 +542,11 @@
                 <a href="index.html#home" class="nav-link">Home</a>
                 <a href="properties.html" class="nav-link active">Properties</a>
                 <a href="about.html" class="nav-link">About</a>
-                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="management.html" class="nav-link">Management</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
-            <a href="index.html#contact-form" class="nav-cta-btn">Let's Talk →</a>
+            <a href="contact.html" class="nav-cta-btn">Let's Talk →</a>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -1612,6 +1640,38 @@
             });
         });
     })();
+    </script>
+
+    <!-- Floating Contact Sidebar Widget -->
+    <div class="floating-sidebar-widget" id="floatingSidebar">
+        <div class="sidebar-menu">
+            <a href="https://wa.me/971501070599" target="_blank" rel="noopener noreferrer" class="sidebar-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="tel:+971501070599" class="sidebar-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>Instant Call</span>
+            </a>
+            <a href="#contact-form" class="sidebar-item">
+                <i class="fas fa-envelope"></i>
+                <span>Get in Touch</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Floating Sidebar Widget
+        const floatingSidebar = document.getElementById('floatingSidebar');
+        
+        // Show sidebar on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                floatingSidebar.classList.add('visible');
+            } else {
+                floatingSidebar.classList.remove('visible');
+            }
+        });
     </script>
 </body>
 </html>

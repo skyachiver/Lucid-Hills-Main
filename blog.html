@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Insights - Lucid Hills Properties</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/image-styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Brand fonts: Script (Great Vibes / Allura), Sans (Montserrat / Poppins), Serif (Cinzel) -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Blog Page Specific Styles */
+        .blog-hero {
+            background: 
+                linear-gradient(135deg, 
+                    rgba(189, 153, 117, 0.7) 0%, 
+                    rgba(189, 153, 117, 0.5) 30%,
+                    rgba(17, 41, 61, 0.8) 70%,
+                    rgba(17, 41, 61, 0.9) 100%
+                ),
+                url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1920&h=1080&fit=crop&q=80') center/cover no-repeat;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(189, 153, 117, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(17, 41, 61, 0.3) 0%, transparent 40%);
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .blog-hero h1 {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Blog Categories Filter */
+        .blog-filter-section {
+            background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+            padding: 35px 0;
+            border-bottom: 1px solid rgba(17, 41, 61, 0.08);
+            position: sticky;
+            top: 100px;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blog-filter-section.scrolled {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(189, 153, 117, 0.25);
+        }
+
+        .blog-categories {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .category-filter {
+            padding: 13px 30px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--navy-blue);
+            border: 1.5px solid rgba(189, 153, 117, 0.25);
+            border-radius: 30px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .category-filter::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(189, 153, 117, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .category-filter:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .category-filter:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(189, 153, 117, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(189, 153, 117, 0.2);
+            color: var(--golden-accent);
+        }
+
+        .category-filter.active {
+            background: linear-gradient(135deg, var(--golden-accent) 0%, #d4a574 100%);
+            color: #ffffff;
+            border-color: var(--golden-accent);
+            box-shadow: 0 6px 25px rgba(189, 153, 117, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .category-filter.active::before {
+            display: none;
+        }
+
+        /* Featured Blog Section */
+        .featured-blog-section {
+            padding: 80px 0 60px;
+            background: linear-gradient(to bottom, #f8f8f8 0%, #ffffff 100%);
+        }
+
+        .featured-blog {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .featured-blog-image {
+            position: relative;
+            height: 550px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(17, 41, 61, 0.15);
+        }
+
+        .featured-blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .featured-blog:hover .featured-blog-image img {
+            transform: scale(1.05);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: var(--golden-accent);
+            color: #ffffff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(189, 153, 117, 0.4);
+        }
+
+        .featured-blog-content {
+            padding: 20px 0;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-category-tag {
+            display: inline-block;
+            background: rgba(189, 153, 117, 0.1);
+            color: var(--golden-accent);
+            padding: 6px 18px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-blog-content h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .featured-blog-content p {
+            color: var(--medium-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--golden-accent);
+            color: #ffffff;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 5px 20px rgba(189, 153, 117, 0.3);
+        }
+
+        .read-more-btn:hover {
+            background: var(--golden-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(189, 153, 117, 0.5);
+        }
+
+        /* Blog Grid Section */
+        .blog-grid-section {
+            padding: 60px 0 100px;
+            background: #ffffff;
+            min-height: 800px;
+            transition: min-height 0.4s ease;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .blog-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(17, 41, 61, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(189, 153, 117, 0.25);
+        }
+
+        .blog-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--golden-accent), var(--golden-light));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .blog-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .blog-card-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            background: var(--navy-blue);
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-card-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--golden-accent);
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-card-content {
+            padding: 30px;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--medium-gray);
+            font-size: 0.85rem;
+        }
+
+        .blog-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .blog-card-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+            line-height: 1.4;
+            font-weight: 700;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-card-excerpt {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(17, 41, 61, 0.1);
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--golden-accent);
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--navy-blue);
+            font-size: 0.9rem;
+        }
+
+        .read-time {
+            color: var(--medium-gray);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Contact CTA Section */
+        .blog-newsletter {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(240, 242, 245, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .newsletter-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-subtitle {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-title {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 35px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .whatsapp-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #5d6d7e 0%, #34495e 100%);
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(52, 73, 94, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .whatsapp-cta i {
+            font-size: 1.6rem;
+        }
+
+        .whatsapp-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(52, 73, 94, 0.5);
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+        }
+
+        @media (max-width: 768px) {
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .whatsapp-cta {
+                font-size: 1.1rem;
+                padding: 16px 35px;
+            }
+        }
+
+        /* Sidebar Widget */
+        .blog-with-sidebar {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 200px;
+            height: fit-content;
+        }
+
+        .sidebar-widget {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(17, 41, 61, 0.05);
+        }
+
+        .widget-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--navy-blue);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .popular-post {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(17, 41, 61, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popular-post:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .popular-post:hover {
+            transform: translateX(5px);
+        }
+
+        .popular-post-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .popular-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .popular-post-content h4 {
+            font-size: 0.95rem;
+            color: var(--navy-blue);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .popular-post-date {
+            color: var(--medium-gray);
+            font-size: 0.8rem;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            padding: 8px 18px;
+            background: rgba(189, 153, 117, 0.1);
+            color: var(--golden-accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--golden-accent);
+            color: #ffffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .blog-with-sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .featured-blog {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-blog-image {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-categories {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 10px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .featured-blog-content h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="page-loader" id="pageLoader">
+        <img src="Assets/white logo.png" alt="Lucid Hills" class="loader-logo">
+        <div class="loader-quote" id="loaderQuote"></div>
+        <div class="loader-progress">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Assets/OG logo.jpg" alt="Lucid Hills Logo">
+                <img src="Assets/White font.png" alt="Lucid Hills" class="nav-logo-text">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="properties.html" class="nav-link">Properties</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="management.html" class="nav-link">Management</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <a href="index.html#contact-form" class="nav-cta-btn">Let's Talk →</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <h1 class="animate-on-scroll">Blog & Insights</h1>
+            <p class="animate-on-scroll">Stay informed with expert insights, market trends, and insider knowledge from Dubai's luxury real estate market. Your guide to making smarter property decisions.</p>
+        </div>
+    </section>
+
+    <!-- Blog Categories Filter -->
+    <section class="blog-filter-section">
+        <div class="blog-categories">
+            <button class="category-filter active" data-category="all">All Articles</button>
+            <button class="category-filter" data-category="market-trends">Market Trends</button>
+            <button class="category-filter" data-category="investment">Investment Tips</button>
+            <button class="category-filter" data-category="luxury-living">Luxury Living</button>
+            <button class="category-filter" data-category="dubai-guide">Dubai Guide</button>
+            <button class="category-filter" data-category="property-law">Property Law</button>
+        </div>
+    </section>
+
+    <!-- Featured Blog Section -->
+    <section class="featured-blog-section">
+        <div class="featured-blog animate-on-scroll">
+            <div class="featured-blog-image">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&h=800&fit=crop" alt="Dubai Skyline">
+                <div class="featured-badge">Featured</div>
+            </div>
+            <div class="featured-blog-content">
+                <span class="blog-category-tag">Market Trends</span>
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar"></i> November 20, 2025</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                </div>
+                <h2>Dubai Real Estate Market Outlook 2026: What Investors Need to Know</h2>
+                <p>
+                    Dubai's property market is projected to maintain strong momentum into 2026, with residential prices expected to rise by 5-7% annually. Key growth drivers include the upcoming World Expo legacy developments, new visa reforms attracting global talent, and continued infrastructure investments in areas like Dubai Creek Harbour and Mohammed bin Rashid City. International buyers, particularly from India, UK, and Russia, are capitalizing on competitive mortgage rates and the city's zero income tax advantage. The off-plan market remains robust with over 90,000 units in the pipeline, while established communities like Dubai Marina and Palm Jumeirah continue to command premium valuations.
+                </p>
+                <a href="#" class="read-more-btn">
+                    Read Full Article <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Grid Section -->
+    <section class="blog-grid-section" id="blogGridSection">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll" id="blogSectionTitle">Latest Articles</h2>
+                <p class="section-subtitle animate-on-scroll" id="blogSectionSubtitle">Expert insights and updates from the world of luxury real estate</p>
+            </div>
+
+            <div class="blog-grid" id="blogGrid">
+                <!-- Articles will be dynamically loaded here -->
+                <div class="loading-state" style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 48px; color: var(--golden-accent); margin-bottom: 20px;"></i>
+                    <p style="font-size: 18px; color: var(--medium-gray);">Loading articles...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="blog-newsletter">
+        <div class="newsletter-content">
+            <p class="cta-subtitle animate-on-scroll">Questions, Comments, or Concerns?</p>
+            <h2 class="cta-title animate-on-scroll">We'd love to hear from you</h2>
+            <a href="https://wa.me/971501070599" class="whatsapp-cta animate-on-scroll" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+                <span>+971 50 107 0599</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo and Description -->
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <img src="Assets/OG logo.jpg" alt="Lucid Hills">
+                        <img src="Assets/White font.png" alt="Lucid Hills" class="footer-logo-text">
+                        <span class="logo-text">Lucid Hills</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner in UAE's luxury real estate market.
+                        We specialize in premium residential, commercial, and investment properties across Dubai, Abu Dhabi, and the Emirates.
+                    </p>
+                    
+                    <!-- Newsletter -->
+                    <div class="footer-newsletter">
+                        <h4>Get latest property update</h4>
+                        <form class="newsletter-form" id="newsletterForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="a59d6031-6785-41e8-90d0-d0bc69f650d7">
+                            <input type="hidden" name="subject" value="New Newsletter Subscription - Lucid Hills">
+                            <input type="hidden" name="from_name" value="Lucid Hills Newsletter">
+                            <input type="email" name="email" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="properties.html">Consulting</a></li>
+                        <li><a href="properties.html">Buying</a></li>
+                        <li><a href="properties.html">Selling</a></li>
+                        <li><a href="properties.html">Rent</a></li>
+                        <li><a href="#contact">Security</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Our Company -->
+                <div class="footer-section">
+                    <h4>Our Company</h4>
+                    <ul>
+                        <li><a href="about.html">Awards</a></li>
+                        <li><a href="about.html">Responsibilities</a></li>
+                        <li><a href="about.html#team">Career</a></li>
+                        <li><a href="#contact">Help</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    
+                    <!-- Social Media Links -->
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61580970939133" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/lucidhillsproperties?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/bergen-crasto-26500a223" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="copyright">Copyright © 2025 All right reserved</p>
+                <p class="footer-made-by">Made by <a href="https://ryzupmarketing.com/" target="_blank" rel="noopener noreferrer">Ryzup Marketing</a></p>
+                <div class="footer-bottom-links">
+                    <a href="about.html">Privacy Policy</a>
+                    <a href="about.html">Terms of Use</a>
+                    <a href="about.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/blog-data.js"></script>
+    <script>
+        // Simplified Blog Filter System
+        (function() {
+            'use strict';
+            
+            // Wait for DOM and blog data to load
+            window.addEventListener('load', function() {
+                // Check if blog data exists
+                if (typeof blogArticles === 'undefined' || !Array.isArray(blogArticles)) {
+                    console.error('Blog data not loaded!');
+                    document.getElementById('blogGrid').innerHTML = 
+                        '<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;"><p style="color: #f44336; font-size: 18px;">⚠️ Unable to load articles. Please refresh the page.</p></div>';
+                    return;
+                }
+
+                console.log('✓ Blog system initialized - Articles loaded:', blogArticles.length);
+                
+                // Initialize the blog
+                initBlog();
+            });
+
+            function initBlog() {
+                const blogGrid = document.getElementById('blogGrid');
+                const blogSection = document.getElementById('blogGridSection');
+                const sectionTitle = document.getElementById('blogSectionTitle');
+                const sectionSubtitle = document.getElementById('blogSectionSubtitle');
+                const filterButtons = document.querySelectorAll('.category-filter');
+                const MAX_ARTICLES = 10;
+                
+                // Category mapping
+                const categoryMap = {
+                    'all': null,
+                    'market-trends': 'Market Trends',
+                    'investment': 'Investment Tips',
+                    'luxury-living': 'Luxury Living',
+                    'dubai-guide': 'Dubai Guide',
+                    'property-law': 'Property Law'
+                };
+
+                // Title and subtitle mapping
+                const titleMap = {
+                    'all': {
+                        title: 'Latest Articles',
+                        subtitle: 'Expert insights and updates from the world of luxury real estate'
+                    },
+                    'market-trends': {
+                        title: 'Market Trends',
+                        subtitle: 'Stay ahead with the latest Dubai real estate market analysis and forecasts'
+                    },
+                    'investment': {
+                        title: 'Investment Tips',
+                        subtitle: 'Expert strategies to maximize your property investment returns'
+                    },
+                    'luxury-living': {
+                        title: 'Luxury Living',
+                        subtitle: 'Explore the finest lifestyle experiences in Dubai\'s premium properties'
+                    },
+                    'dubai-guide': {
+                        title: 'Dubai Guide',
+                        subtitle: 'Your comprehensive guide to living and investing in Dubai'
+                    },
+                    'property-law': {
+                        title: 'Property Law',
+                        subtitle: 'Navigate UAE real estate regulations with confidence'
+                    }
+                };
+
+                // Initial render
+                renderArticles('all');
+
+                // Function to render articles
+                function renderArticles(filterKey) {
+                    console.log('Filtering by:', filterKey);
+                    
+                    // Update section title and subtitle with animation
+                    const titleData = titleMap[filterKey];
+                    sectionTitle.style.opacity = '0';
+                    sectionSubtitle.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        sectionTitle.textContent = titleData.title;
+                        sectionSubtitle.textContent = titleData.subtitle;
+                        sectionTitle.style.transition = 'opacity 0.4s ease';
+                        sectionSubtitle.style.transition = 'opacity 0.4s ease';
+                        sectionTitle.style.opacity = '1';
+                        sectionSubtitle.style.opacity = '1';
+                    }, 200);
+                    
+                    // Get category name to filter by
+                    const categoryName = categoryMap[filterKey];
+                    
+                    // Filter articles
+                    let filtered = categoryName ? 
+                        blogArticles.filter(article => article.category === categoryName) : 
+                        blogArticles;
+                    
+                    // Limit to MAX_ARTICLES
+                    filtered = filtered.slice(0, MAX_ARTICLES);
+                    
+                    console.log(`Found ${filtered.length} articles`);
+                    
+                    // Clear grid
+                    blogGrid.innerHTML = '';
+                    
+                    // Check if empty
+                    if (filtered.length === 0) {
+                        blogGrid.innerHTML = `
+                            <div style="grid-column: 1/-1; text-align: center; padding: 80px 20px;">
+                                <i class="fas fa-inbox" style="font-size: 64px; color: rgba(189, 153, 117, 0.3); margin-bottom: 20px;"></i>
+                                <p style="font-size: 20px; color: var(--medium-gray); font-weight: 500;">No articles found in this category</p>
+                                <p style="font-size: 16px; color: var(--medium-gray); margin-top: 10px;">Check back soon for new content!</p>
+                            </div>`;
+                        return;
+                    }
+                    
+                    // Render each article
+                    filtered.forEach((article, index) => {
+                        const card = createCard(article, index);
+                        blogGrid.appendChild(card);
+                    });
+                }
+
+                // Function to create article card element
+                function createCard(article, index) {
+                    const card = document.createElement('article');
+                    card.className = 'blog-card';
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.style.opacity = '0';
+                    card.style.animation = 'fadeInUp 0.6s ease forwards';
+                    
+                    // Get author image
+                    const authorImages = {
+                        'Layla Hassan': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop',
+                        'Mohammed Hassan': 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop',
+                        'Sarah Williams': 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop',
+                        'David Thompson': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
+                        'Elena Rodriguez': 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop'
+                    };
+                    const authorImg = authorImages[article.author] || authorImages['Mohammed Hassan'];
+                    
+                    card.innerHTML = `
+                        <div class="blog-card-image">
+                            <img src="${article.image}" alt="${article.title}">
+                            <span class="blog-card-category">${article.category}</span>
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span><i class="far fa-calendar"></i> ${article.date}</span>
+                                <span class="view-count"><i class="far fa-eye"></i> ${article.views} views</span>
+                            </div>
+                            <h3 class="blog-card-title">${article.title}</h3>
+                            <p class="blog-card-excerpt">${article.excerpt}</p>
+                            <div class="blog-card-footer">
+                                <div class="blog-author">
+                                    <div class="author-avatar">
+                                        <img src="${authorImg}" alt="${article.author}">
+                                    </div>
+                                    <span class="author-name">${article.author}</span>
+                                </div>
+                                <span class="read-time"><i class="far fa-clock"></i> ${article.readTime}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Click handler
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', function() {
+                        window.location.href = `blog-article.html?id=${article.id}`;
+                    });
+                    
+                    return card;
+                }
+
+                // Attach filter button event listeners
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        // Get filter category
+                        const filterKey = this.getAttribute('data-category');
+                        
+                        // Render filtered articles
+                        renderArticles(filterKey);
+                        
+                        // Smooth scroll to section header (title area) with offset for sticky filter
+                        setTimeout(() => {
+                            const headerOffset = 140; // Account for navbar (80px) + filter bar (60px)
+                            const sectionPosition = blogSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                            
+                            window.scrollTo({
+                                top: sectionPosition,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    });
+                });
+
+                // Newsletter form
+                setupNewsletterForm();
+
+                // Featured article
+                setupFeaturedArticle();
+
+                // Scroll effects
+                setupScrollEffects();
+            }
+
+            // Newsletter form handler
+            function setupNewsletterForm() {
+                const blogNewsForm = document.getElementById('blogNewsletterForm');
+                if (blogNewsForm) {
+                    blogNewsForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.innerHTML;
+                        
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+                        
+                        const formData = new FormData(this);
+                        
+                        fetch(this.action, {
+                            method: 'POST',
+                            body: formData
+                        }).then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                submitBtn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+                                submitBtn.style.background = '#4CAF50';
+                                this.reset();
+                                showMessage('Thank you for subscribing! Check your email for confirmation.', 'success');
+                                
+                                setTimeout(() => {
+                                    submitBtn.innerHTML = originalText;
+                                    submitBtn.style.background = '';
+                                    submitBtn.disabled = false;
+                                }, 3000);
+                            } else {
+                                throw new Error('Subscription failed');
+                            }
+                        }).catch(error => {
+                            console.error('Error:', error);
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                            showMessage('Subscription failed. Please try again.', 'error');
+                        });
+                    });
+                }
+            }
+
+            // Setup featured article
+            function setupFeaturedArticle() {
+                const readMoreBtn = document.querySelector('.featured-blog .read-more-btn');
+                if (readMoreBtn) {
+                    readMoreBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Open first market trends article
+                        const marketTrendsArticle = blogArticles.find(a => a.category === 'Market Trends');
+                        if (marketTrendsArticle) {
+                            window.location.href = `blog-article.html?id=${marketTrendsArticle.id}`;
+                        }
+                    });
+                }
+            }
+
+            // Setup scroll effects
+            function setupScrollEffects() {
+                let lastScroll = 0;
+                const filterSection = document.querySelector('.blog-filter-section');
+                
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+                    
+                    if (filterSection) {
+                        if (currentScroll > 200) {
+                            filterSection.classList.add('scrolled');
+                        } else {
+                            filterSection.classList.remove('scrolled');
+                        }
+                    }
+                    
+                    lastScroll = currentScroll;
+                });
+            }
+
+            // Setup scroll animations
+            function setupAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animated');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            // Show notification message
+            function showMessage(text, type) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'blog-notification';
+                messageDiv.style.cssText = `
+                    position: fixed;
+                    top: 120px;
+                    right: 20px;
+                    background: ${type === 'success' ? 'linear-gradient(135deg, #4CAF50, #45a049)' : 'linear-gradient(135deg, #f44336, #da190b)'};
+                    color: white;
+                    padding: 16px 24px;
+                    border-radius: 10px;
+                    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+                    z-index: 10000;
+                    animation: slideInRight 0.4s ease;
+                    max-width: 350px;
+                    font-weight: 500;
+                `;
+                messageDiv.textContent = text;
+                document.body.appendChild(messageDiv);
+
+                setTimeout(() => {
+                    messageDiv.style.animation = 'slideOutRight 0.4s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(messageDiv);
+                    }, 400);
+                }, 4000);
+            }
+
+            // Add required animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(400px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                @keyframes slideOutRight {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(400px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    })();
+    </script>
+
+    <!-- Floating Contact Sidebar Widget -->
+    <div class="floating-sidebar-widget" id="floatingSidebar">
+        <div class="sidebar-menu">
+            <a href="https://wa.me/971501070599" target="_blank" rel="noopener noreferrer" class="sidebar-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="tel:+971501070599" class="sidebar-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>Instant Call</span>
+            </a>
+            <a href="#contact-form" class="sidebar-item">
+                <i class="fas fa-envelope"></i>
+                <span>Get in Touch</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Floating Sidebar Widget
+        const floatingSidebar = document.getElementById('floatingSidebar');
+        
+        // Show sidebar on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                floatingSidebar.classList.add('visible');
+            } else {
+                floatingSidebar.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>

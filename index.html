@@ -557,6 +557,7 @@
     <!-- Loading Screen -->
     <div class="page-loader" id="pageLoader">
         <img src="Assets/white logo.png" alt="Lucid Hills" class="loader-logo">
+        <div class="loader-quote" id="loaderQuote"></div>
         <div class="loader-progress">
             <div class="loader-bar"></div>
         </div>
@@ -573,7 +574,9 @@
                 <a href="#home" class="nav-link">Home</a>
                 <a href="properties.html" class="nav-link">Properties</a>
                 <a href="about.html" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="management.html" class="nav-link">Management</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
             <a href="#contact-form" class="nav-cta-btn">Let's Talk →</a>
             <div class="hamburger">
@@ -586,108 +589,64 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-bg-slider">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80');"></div>
+        </div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="container">
+                <div class="hero-badge">WELCOME TO LUCID HILLS</div>
                 <h1 class="hero-main-title">
-                    Let us find a place<br>
-                    you can <span class="hero-highlight">call home</span>
+                    Let us find a place<br><span class="hero-highlight">you can call home</span>
                 </h1>
                 <p class="hero-description">
-                    Discover luxurious residences, vibrant communities, and exceptional <br>
-                    investment opportunities across Dubai. From waterfront apartments to <br>
-                    family-friendly villas, we connect you with the perfect property to match your lifestyle and goals.
+                    Premium properties in the world's most prestigious locations
                 </p>
-            </div>
-        </div>
-        
-        <!-- Registration Form - Bottom -->
-        <div class="registration-bottom">
-            <div class="container">
-                <div class="registration-container animate-on-scroll">
-                    <h3 class="registration-title">REGISTER YOUR INTEREST</h3>
-                    <form id="registrationForm" class="registration-form" action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="a59d6031-6785-41e8-90d0-d0bc69f650d7">
-                        <div class="form-row">
-                            <input type="text" name="name" placeholder="Full Name" class="form-input" required>
-                            <div class="phone-input">
-                                <select name="country_code" class="country-code">
-                                    <option value="+971">🇦🇪 +971</option>
-                                    <option value="+966">🇸🇦 +966</option>
-                                    <option value="+965">🇰🇼 +965</option>
-                                    <option value="+974">🇶🇦 +974</option>
-                                    <option value="+968">🇴🇲 +968</option>
-                                    <option value="+973">🇧🇭 +973</option>
-                                    <option value="+1">🇺🇸 +1</option>
-                                    <option value="+44">🇬🇧 +44</option>
-                                    <option value="+91">🇮🇳 +91</option>
-                                    <option value="+86">🇨🇳 +86</option>
-                                    <option value="+33">🇫🇷 +33</option>
-                                    <option value="+49">🇩🇪 +49</option>
-                                    <option value="+39">🇮🇹 +39</option>
-                                    <option value="+34">🇪🇸 +34</option>
-                                    <option value="+31">🇳🇱 +31</option>
-                                    <option value="+32">🇧🇪 +32</option>
-                                    <option value="+41">🇨🇭 +41</option>
-                                    <option value="+43">🇦🇹 +43</option>
-                                    <option value="+45">🇩🇰 +45</option>
-                                    <option value="+46">🇸🇪 +46</option>
-                                    <option value="+47">🇳🇴 +47</option>
-                                    <option value="+358">🇫🇮 +358</option>
-                                    <option value="+7">🇷🇺 +7</option>
-                                    <option value="+380">🇺🇦 +380</option>
-                                    <option value="+48">🇵🇱 +48</option>
-                                    <option value="+90">🇹🇷 +90</option>
-                                    <option value="+30">🇬🇷 +30</option>
-                                    <option value="+351">🇵🇹 +351</option>
-                                    <option value="+212">🇲🇦 +212</option>
-                                    <option value="+20">🇪🇬 +20</option>
-                                    <option value="+27">🇿🇦 +27</option>
-                                    <option value="+234">🇳🇬 +234</option>
-                                    <option value="+254">🇰🇪 +254</option>
-                                    <option value="+81">🇯🇵 +81</option>
-                                    <option value="+82">🇰🇷 +82</option>
-                                    <option value="+65">🇸🇬 +65</option>
-                                    <option value="+60">🇲🇾 +60</option>
-                                    <option value="+66">🇹🇭 +66</option>
-                                    <option value="+84">🇻🇳 +84</option>
-                                    <option value="+62">🇮🇩 +62</option>
-                                    <option value="+63">🇵🇭 +63</option>
-                                    <option value="+61">🇦🇺 +61</option>
-                                    <option value="+64">🇳🇿 +64</option>
-                                    <option value="+55">🇧🇷 +55</option>
-                                    <option value="+54">🇦🇷 +54</option>
-                                    <option value="+52">🇲🇽 +52</option>
-                                    <option value="+56">🇨🇱 +56</option>
-                                    <option value="+57">🇨🇴 +57</option>
-                                    <option value="+51">🇵🇪 +51</option>
-                                    <option value="+98">🇮🇷 +98</option>
-                                    <option value="+92">🇵🇰 +92</option>
-                                    <option value="+880">🇧🇩 +880</option>
-                                    <option value="+94">🇱🇰 +94</option>
-                                    <option value="+977">🇳🇵 +977</option>
-                                </select>
-                                <input type="tel" name="phone" placeholder="XXX XXX XXX" class="form-input phone-number">
-                            </div>
-                            <input type="email" name="email" placeholder="Email Address" class="form-input" required>
-                            <select name="interest" class="form-input interest-select" required>
-                                <option value="">I'm interested in...</option>
-                                <option value="buying">Buying a Property</option>
-                                <option value="selling">Selling my Property</option>
-                                <option value="renting">Renting</option>
-                                <option value="investing">Investment Opportunities</option>
-                            </select>
-                            <button type="submit" class="submit-btn" data-form-type="registration">SUBMIT</button>
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
                         </div>
-                    </form>
-                    <p class="form-disclaimer">
-                        I consent to Lucid Hills Properties or its affiliated companies, agents, consultants or agents 
-                        being able to inform me on current and future developments. I understand you may use my 
-                        data in order to communicate with me. Should I wish to unsubscribe, I will send an email to 
-                        info@lucidhillsgroup.com. For more information on our Terms & Conditions, Please click 
-                        <a href="#" class="disclaimer-link">here</a>.
-                    </p>
+                        <h3>Personalized Service</h3>
+                        <p>Tailored solutions for your unique needs</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-compass"></i>
+                        </div>
+                        <h3>Expert Guidance</h3>
+                        <p>Professional advice every step of the way</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Prime Locations</h3>
+                        <p>Exclusive properties in Dubai's best areas</p>
+                    </div>
+                </div>
+                <div class="hero-badges">
+                    <div class="badge-item">
+                        <i class="fas fa-home"></i>
+                        <span>500+ Listings</span>
+                    </div>
+                    <div class="badge-item">
+                        <i class="fas fa-award"></i>
+                        <span>Award Winning</span>
+                    </div>
+                    <div class="badge-item">
+                        <i class="fas fa-handshake"></i>
+                        <span>Trusted Service</span>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="hero-slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
         </div>
     </section>
 
@@ -709,7 +668,7 @@
                             <span class="detail-item"><i class="fas fa-ruler-combined"></i> 4,500 sq ft</span>
                         </div>
                         <div class="slider-price">AED 9,000,000</div>
-                        <a href="#contact-form" class="slider-inquire-btn">Enquire Now</a>
+                        <a href="https://wa.me/971501070599?text=Hi,%20I'm%20interested%20in%20the%20Modern%20Luxury%20Villa%20-%20AED%209,000,000" target="_blank" rel="noopener noreferrer" class="slider-inquire-btn">Enquire Now</a>
                     </div>
                 </div>
 
@@ -727,7 +686,7 @@
                             <span class="detail-item"><i class="fas fa-ruler-combined"></i> 3,200 sq ft</span>
                         </div>
                         <div class="slider-price">AED 6,800,000</div>
-                        <a href="#contact-form" class="slider-inquire-btn">Enquire Now</a>
+                        <a href="https://wa.me/971501070599?text=Hi,%20I'm%20interested%20in%20the%20Elegant%20Penthouse%20-%20AED%206,800,000" target="_blank" rel="noopener noreferrer" class="slider-inquire-btn">Enquire Now</a>
                     </div>
                 </div>
 
@@ -745,7 +704,7 @@
                             <span class="detail-item"><i class="fas fa-ruler-combined"></i> 2,800 sq ft</span>
                         </div>
                         <div class="slider-price">AED 4,400,000</div>
-                        <a href="#contact-form" class="slider-inquire-btn">Enquire Now</a>
+                        <a href="https://wa.me/971501070599?text=Hi,%20I'm%20interested%20in%20the%20Contemporary%20Townhouse%20-%20AED%204,400,000" target="_blank" rel="noopener noreferrer" class="slider-inquire-btn">Enquire Now</a>
                     </div>
                 </div>
 
@@ -763,7 +722,7 @@
                             <span class="detail-item"><i class="fas fa-ruler-combined"></i> 1,800 sq ft</span>
                         </div>
                         <div class="slider-price">AED 3,500,000</div>
-                        <a href="#contact-form" class="slider-inquire-btn">Enquire Now</a>
+                        <a href="https://wa.me/971501070599?text=Hi,%20I'm%20interested%20in%20the%20Waterfront%20Apartment%20-%20AED%203,500,000" target="_blank" rel="noopener noreferrer" class="slider-inquire-btn">Enquire Now</a>
                     </div>
                 </div>
 
@@ -781,7 +740,7 @@
                             <span class="detail-item"><i class="fas fa-ruler-combined"></i> 6,500 sq ft</span>
                         </div>
                         <div class="slider-price">AED 12,500,000</div>
-                        <a href="#contact-form" class="slider-inquire-btn">Enquire Now</a>
+                        <a href="https://wa.me/971501070599?text=Hi,%20I'm%20interested%20in%20the%20Luxury%20Estate%20-%20AED%2012,500,000" target="_blank" rel="noopener noreferrer" class="slider-inquire-btn">Enquire Now</a>
                     </div>
                 </div>
 
@@ -799,7 +758,7 @@
                             <span class="detail-item"><i class="fas fa-ruler-combined"></i> 4,200 sq ft</span>
                         </div>
                         <div class="slider-price">AED 8,200,000</div>
-                        <a href="#contact-form" class="slider-inquire-btn">Enquire Now</a>
+                        <a href="https://wa.me/971501070599?text=Hi,%20I'm%20interested%20in%20the%20Beachfront%20Villa%20-%20AED%208,200,000" target="_blank" rel="noopener noreferrer" class="slider-inquire-btn">Enquire Now</a>
                     </div>
                 </div>
             </div>
@@ -808,251 +767,6 @@
             <div class="slider-navigation">
                 <button class="slider-nav-btn slider-prev" aria-label="Previous Slide">◁</button>
                 <button class="slider-nav-btn slider-next" aria-label="Next Slide">▷</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Simple Steps Section -->
-    <section class="simple-steps-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Simple Steps</h2>
-                <p class="section-subtitle">Your journey to finding the perfect property made easy in three simple steps</p>
-            </div>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="step-connector"></div>
-                    <h3 class="step-title">Search For Real Estates</h3>
-                    <p class="step-description">Browse through our extensive collection of premium properties in Dubai. Use our advanced filters to find homes that match your lifestyle and budget.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="step-connector"></div>
-                    <h3 class="step-title">Select Your Favorite</h3>
-                    <p class="step-description">Save your preferred properties and schedule viewings at your convenience. Our expert consultants will guide you through every detail of your chosen home.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-icon">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <h3 class="step-title">Take Your Key</h3>
-                    <p class="step-description">Complete the seamless purchase process with our full support. From paperwork to handover, we ensure a smooth transition into your dream property.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Property Types Section -->
-    <section id="property-types" class="property-types-section">
-        <div class="property-types-container">
-            <div class="property-types-grid">
-                <div class="property-type-card" data-type="apartment">
-                    <div class="property-type-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="20" y="10" width="60" height="80" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <rect x="30" y="20" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="58" y="20" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="30" y="40" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="58" y="40" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="30" y="60" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="58" y="60" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
-                    </div>
-                    <h3 class="property-type-title">Apartment</h3>
-                </div>
-
-                <div class="property-type-card" data-type="villa">
-                    <div class="property-type-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 15 L85 45 L85 85 L15 85 L15 45 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <rect x="40" y="55" width="20" height="30" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <rect x="25" y="50" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="60" y="50" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <circle cx="48" cy="70" r="2" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <h3 class="property-type-title">Villa</h3>
-                </div>
-
-                <div class="property-type-card" data-type="mansion">
-                    <div class="property-type-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 10 L90 40 L90 90 L10 90 L10 40 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <rect x="35" y="60" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="50" cy="75" r="2" fill="currentColor"/>
-                            <rect x="20" y="45" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="68" y="45" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <path d="M50 10 L50 25" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="50" cy="30" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
-                    </div>
-                    <h3 class="property-type-title">Mansion</h3>
-                </div>
-
-                <div class="property-type-card" data-type="townhouse">
-                    <div class="property-type-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="25" y="35" width="50" height="55" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <path d="M50 15 L75 35 L25 35 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <rect x="40" y="60" width="20" height="30" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <rect x="30" y="45" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="58" y="45" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
-                    </div>
-                    <h3 class="property-type-title">Townhouse</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Amenities Section -->
-    <section id="amenities" class="amenities-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title animate-on-scroll">The Amenities</h2>
-                <h3 class="amenities-subtitle animate-on-scroll">From Escape to Celebration</h3>
-                <div class="scroll-indicator">
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-            </div>
-
-            <div class="amenities-description">
-                <p>
-                    Spanning multiple levels, the amenities at Lucid Hills redefine everyday living, from vibrant social hubs to serene wellness retreats. Each space is thoughtfully curated to promote a lifestyle filled with the spirit of luxury living. Whether gathering with friends, unwinding in moments of calm, or pursuing fitness and recreation, residents enjoy a seamless blend of sophistication and vitality, where every detail elevates home into something timeless and extraordinary.
-                </p>
-            </div>
-
-            <div class="amenities-grid">
-                <div class="amenity-item animate-on-scroll stagger-animation">
-                    <div class="amenity-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h4>Grand Lobby</h4>
-                    <p>Elegant entrance with premium finishes</p>
-                </div>
-
-                <div class="amenity-item animate-on-scroll stagger-animation">
-                    <div class="amenity-icon">
-                        <i class="fas fa-tree"></i>
-                    </div>
-                    <h4>Courtyard and Terraces</h4>
-                    <p>Landscaped outdoor spaces for relaxation</p>
-                </div>
-
-                <div class="amenity-item animate-on-scroll stagger-animation">
-                    <div class="amenity-icon">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <h4>Fitness and Yoga Studio</h4>
-                    <p>State-of-the-art wellness facilities</p>
-                </div>
-
-                <div class="amenity-item animate-on-scroll stagger-animation">
-                    <div class="amenity-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h4>Residential Clubhouse</h4>
-                    <p>Exclusive community gathering space</p>
-                </div>
-
-                <div class="amenity-item animate-on-scroll stagger-animation">
-                    <div class="amenity-icon">
-                        <i class="fas fa-swimmer"></i>
-                    </div>
-                    <h4>Leisure and Lap Pools</h4>
-                    <p>Multiple swimming facilities for all ages</p>
-                </div>
-
-                <div class="amenity-item animate-on-scroll stagger-animation">
-                    <div class="amenity-icon">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <h4>Kids Pool</h4>
-                    <p>Safe and fun aquatic area for children</p>
-                </div>
-
-                <div class="amenity-item animate-on-scroll stagger-animation">
-                    <div class="amenity-icon">
-                        <i class="fas fa-table-tennis"></i>
-                    </div>
-                    <h4>Padel and Badminton Courts</h4>
-                    <p>Professional sports facilities</p>
-                </div>
-
-                <div class="amenity-item animate-on-scroll stagger-animation">
-                    <div class="amenity-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h4>Kids Play Area</h4>
-                    <p>Dedicated recreational space for children</p>
-                </div>
-            </div>
-
-            <div class="amenities-cta">
-                <button class="enquire-btn">Enquire Now</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Property Image Slider Section -->
-    <section id="gallery" class="property-slider-section">
-        <div class="slider-container">
-            <div class="property-slider">
-                <div class="slide active">
-                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=800&fit=crop" alt="Luxury Living Room">
-                </div>
-                
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1920&h=800&fit=crop" alt="Modern Kitchen">
-                </div>
-                
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1920&h=800&fit=crop" alt="Master Bedroom">
-                </div>
-                
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1920&h=800&fit=crop" alt="Spa Bathroom">
-                </div>
-                
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=800&fit=crop" alt="Balcony View">
-                </div>
-                
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=800&fit=crop" alt="Building Exterior">
-                </div>
-            </div>
-            
-            <!-- Explore Properties Button -->
-            <a href="properties.html" class="explore-properties-btn">
-                <span>Explore Our Properties</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-            
-            <!-- Navigation Controls -->
-            <button class="slider-btn prev-btn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="slider-btn next-btn">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            
-            <!-- Slide Indicators -->
-            <div class="slider-indicators">
-                <span class="indicator active" data-slide="0"></span>
-                <span class="indicator" data-slide="1"></span>
-                <span class="indicator" data-slide="2"></span>
-                <span class="indicator" data-slide="3"></span>
-                <span class="indicator" data-slide="4"></span>
-                <span class="indicator" data-slide="5"></span>
             </div>
         </div>
     </section>
@@ -1100,6 +814,167 @@
         </div>
     </section>
 
+    <!-- Buyer & Seller Guides Section -->
+    <section class="buyer-seller-section">
+        <div class="container">
+            <div class="buyer-seller-content">
+                <div class="buyer-seller-left">
+                    <h2 class="buyer-seller-title">Sell or rent your property with confidence!</h2>
+                    <p class="buyer-seller-description">Expert help, zero hassle. We'll match you with a trusted real estate agent to lead your sale from start to finish.</p>
+                </div>
+
+                <div class="property-inquiry-form">
+                <form id="propertyInquiryForm" class="form-step-1">
+                    <!-- I am looking to -->
+                    <div class="form-section">
+                        <label class="form-label">I am looking to</label>
+                        <div class="toggle-buttons">
+                            <button type="button" class="toggle-btn active" data-action="sell">Sell</button>
+                            <button type="button" class="toggle-btn" data-action="rent">Rent</button>
+                        </div>
+                        <input type="hidden" name="action" value="sell">
+                    </div>
+
+                    <!-- Rent Frequency (hidden by default) -->
+                    <div class="form-section" id="rentFrequencySection" style="display: none;">
+                        <label class="form-label">Rent Frequency</label>
+                        <div class="toggle-buttons">
+                            <button type="button" class="toggle-btn rent-frequency-btn active" data-frequency="yearly">Yearly</button>
+                            <button type="button" class="toggle-btn rent-frequency-btn" data-frequency="monthly">Monthly</button>
+                        </div>
+                        <input type="hidden" name="rentFrequency" value="yearly">
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-section">
+                        <label class="form-label">Location<span class="required">*</span></label>
+                        <div class="input-with-icon location-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" id="locationInput" name="location" placeholder="Enter location, building or community" required autocomplete="off">
+                            <div class="location-dropdown" id="locationDropdown" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Category & Type -->
+                    <div class="form-section">
+                        <label class="form-label">Category & Type<span class="required">*</span></label>
+                        <div class="toggle-buttons">
+                            <button type="button" class="toggle-btn category-btn active" data-category="residential">Residential</button>
+                            <button type="button" class="toggle-btn category-btn" data-category="commercial">Commercial</button>
+                        </div>
+                        <input type="hidden" name="category" value="residential">
+                        
+                        <div class="property-type-buttons residential-types" style="margin-top: 15px;">
+                            <button type="button" class="type-btn active" data-type="apartment">Apartment</button>
+                            <button type="button" class="type-btn" data-type="villa">Villa</button>
+                            <button type="button" class="type-btn" data-type="townhouse">Townhouse</button>
+                            <button type="button" class="type-btn" data-type="penthouse">Penthouse</button>
+                            <button type="button" class="type-btn" data-type="other">Other</button>
+                        </div>
+                        <div class="property-type-buttons commercial-types" style="margin-top: 15px; display: none;">
+                            <button type="button" class="type-btn" data-type="shop">Shop</button>
+                            <button type="button" class="type-btn" data-type="office">Office</button>
+                            <button type="button" class="type-btn" data-type="warehouse">Warehouse</button>
+                            <button type="button" class="type-btn" data-type="commercial-villa">Commercial Villa</button>
+                            <button type="button" class="type-btn" data-type="other">Other</button>
+                        </div>
+                        <input type="hidden" name="propertyType" value="apartment">
+                    </div>
+
+                    <!-- Bedrooms -->
+                    <div class="form-section bedroom-section">
+                        <label class="form-label">Bedrooms<span class="required">*</span></label>
+                        <div class="bedroom-buttons">
+                            <button type="button" class="bedroom-btn" data-beds="studio">Studio</button>
+                            <button type="button" class="bedroom-btn active" data-beds="1">1</button>
+                            <button type="button" class="bedroom-btn" data-beds="2">2</button>
+                            <button type="button" class="bedroom-btn" data-beds="3">3</button>
+                            <button type="button" class="bedroom-btn" data-beds="4">4</button>
+                            <button type="button" class="bedroom-btn" data-beds="5">5</button>
+                            <button type="button" class="bedroom-btn" data-beds="6">6</button>
+                            <button type="button" class="bedroom-btn" data-beds="7">7</button>
+                            <button type="button" class="bedroom-btn" data-beds="8+">8+</button>
+                        </div>
+                        <input type="hidden" name="bedrooms" value="1">
+                    </div>
+
+                    <!-- Area & Furnishing -->
+                    <div class="form-section form-row-2">
+                        <div>
+                            <label class="form-label">Area (sqft)</label>
+                            <input type="number" name="area" placeholder="Enter area" min="0">
+                        </div>
+                        <div>
+                            <label class="form-label">Furnishing</label>
+                            <select name="furnishing">
+                                <option value="">Select</option>
+                                <option value="unfurnished">Unfurnished</option>
+                                <option value="semi-furnished">Semi-furnished</option>
+                                <option value="furnished">Fully Furnished</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Urgency -->
+                    <div class="form-section">
+                        <label class="form-label">Urgency</label>
+                        <div class="urgency-buttons">
+                            <button type="button" class="urgency-btn" data-urgency="this-month">This month</button>
+                            <button type="button" class="urgency-btn" data-urgency="within-2-months">Within 2 months</button>
+                            <button type="button" class="urgency-btn active" data-urgency="flexible">Flexible</button>
+                        </div>
+                        <input type="hidden" name="urgency" value="flexible">
+                    </div>
+
+                    <!-- Continue Button -->
+                    <button type="button" class="continue-btn" id="continueToStep2">Continue</button>
+                </form>
+                
+                <!-- Step 2 Form (Contact Details) -->
+                <form id="propertyContactForm" class="form-step-2" style="display: none;">
+                    <button type="button" class="back-btn" id="backToStep1">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    
+                    <div class="form-section">
+                        <label class="form-label" id="priceLabel">Expected Price (AED)<span class="required">*</span></label>
+                        <input type="number" name="expectedPrice" placeholder="Enter expected price" required>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label class="form-label">Notes</label>
+                        <textarea name="notes" rows="4" placeholder="Enter your notes here"></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <label class="form-label" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;">Contact Details</label>
+                        
+                        <div class="form-field" style="margin-bottom: 15px;">
+                            <input type="text" name="name" placeholder="Name*" required>
+                        </div>
+                        
+                        <div class="form-field" style="margin-bottom: 15px;">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        
+                        <div class="form-field phone-field">
+                            <div class="phone-prefix">
+                                <img src="https://flagcdn.com/w40/ae.png" alt="UAE" style="width: 20px; margin-right: 8px;">
+                                <span>+971</span>
+                            </div>
+                            <input type="tel" name="phone" placeholder="Phone number" required pattern="[0-9]{9}">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="continue-btn">Submit</button>
+                    
+                    <p class="form-disclaimer">By submitting, you agree to Lucid Hills' Terms & Privacy Policy.</p>
+                </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Who We Are Section -->
     <section class="who-we-are-section">
         <div class="container">
@@ -1108,7 +983,7 @@
                     <img src="Assets/wvr.jpeg" alt="Lucid Hills Real Estate" />
                 </div>
                 <div class="who-we-are-text">
-                    <h2 class="section-title">What Makes Dubai Real Estate Exceptional?</h2>
+                    <h2 class="section-title">Why UAE ?</h2>
                     <p class="who-we-are-description">
                         Dubai's real estate market offers unparalleled opportunities for investors and homeowners seeking world-class luxury living. At Lucid Hills, we understand the intricacies of this dynamic market and provide expert guidance to help you navigate your property journey with confidence.
                     </p>
@@ -1143,7 +1018,7 @@
                     </div>
                     
                     <div class="who-we-are-btn-wrapper">
-                        <a href="#contact-form" class="who-we-are-btn">Enquire Now</a>
+                        <a href="https://wa.me/971501070599" target="_blank" rel="noopener noreferrer" class="who-we-are-btn">Enquire Now</a>
                     </div>
                 </div>
             </div>
@@ -1190,6 +1065,108 @@
         </div>
     </section>
 
+    <!-- Loan Calculator Section -->
+    <section id="loan-calculator" class="loan-calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Mortgage Calculator</h2>
+                <p class="section-subtitle">Calculate your monthly payments for UAE real estate investments with precision</p>
+            </div>
+
+            <div class="calculator-wrapper">
+                <div class="calculator-card glass-effect">
+                    <div class="calculator-inputs">
+                        <div class="input-group">
+                            <label for="propertyPrice">
+                                <i class="fas fa-home"></i>
+                                Property Price (AED)
+                            </label>
+                            <input type="number" id="propertyPrice" value="2000000" min="100000" step="50000">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="downPayment">
+                                <i class="fas fa-percentage"></i>
+                                Down Payment (%)
+                            </label>
+                            <input type="number" id="downPayment" value="25" min="20" max="100" step="5">
+                            <small class="input-hint">Minimum 20% for expats, 15% for UAE nationals</small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="loanTerm">
+                                <i class="fas fa-calendar-alt"></i>
+                                Loan Term (Years)
+                            </label>
+                            <input type="number" id="loanTerm" value="25" min="1" max="25" step="1">
+                            <small class="input-hint">Maximum 25 years in UAE</small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="interestRate">
+                                <i class="fas fa-chart-line"></i>
+                                Interest Rate (%)
+                            </label>
+                            <input type="number" id="interestRate" value="4.99" min="1" max="15" step="0.01">
+                            <small class="input-hint">Current UAE rates: 4.5% - 5.5%</small>
+                        </div>
+
+                        <button class="calculate-btn" onclick="calculateMortgage()">
+                            <i class="fas fa-calculator"></i>
+                            Calculate
+                        </button>
+                    </div>
+
+                    <div class="calculator-results" id="calculatorResults">
+                        <h3 class="results-title">Your Monthly Payment</h3>
+                        <div class="monthly-payment">
+                            <span class="amount" id="monthlyPayment">AED 0</span>
+                        </div>
+
+                        <div class="results-breakdown">
+                            <div class="result-item">
+                                <span class="result-label">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    Loan Amount
+                                </span>
+                                <span class="result-value" id="loanAmount">AED 0</span>
+                            </div>
+
+                            <div class="result-item">
+                                <span class="result-label">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                    Down Payment
+                                </span>
+                                <span class="result-value" id="downPaymentAmount">AED 0</span>
+                            </div>
+
+                            <div class="result-item">
+                                <span class="result-label">
+                                    <i class="fas fa-percent"></i>
+                                    Total Interest
+                                </span>
+                                <span class="result-value" id="totalInterest">AED 0</span>
+                            </div>
+
+                            <div class="result-item">
+                                <span class="result-label">
+                                    <i class="fas fa-coins"></i>
+                                    Total Amount Payable
+                                </span>
+                                <span class="result-value" id="totalPayable">AED 0</span>
+                            </div>
+                        </div>
+
+                        <div class="calculator-disclaimer">
+                            <i class="fas fa-info-circle"></i>
+                            <p>This calculator provides estimates only. Actual rates and terms may vary based on your profile, bank, and property type. Contact our team for personalized mortgage assistance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Our Exclusive Team Section -->
     <section id="team" class="team-section">
         <div class="container">
@@ -1201,12 +1178,10 @@
             <div class="team-grid">
                 <div class="team-member">
                     <div class="team-member-image">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&amp;h=500&amp;fit=crop" alt="Layla Hassan" class="loaded">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop" alt="Layla Hassan">
                         <div class="team-member-overlay">
                             <div class="team-social">
-                                <a href="https://www.linkedin.com/in/bergen-crasto-26500a223" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="mailto:info@lucidhills.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-                                <a href="https://wa.me/971585409697" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1219,12 +1194,10 @@
 
                 <div class="team-member">
                     <div class="team-member-image">
-                        <img src="https://plus.unsplash.com/premium_photo-1664475546048-b1e3768d2b14?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHByb2Zlc3Npb25hbCUyMGxhZHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500" alt="Sarah Williams">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop" alt="Sarah Williams">
                         <div class="team-member-overlay">
                             <div class="team-social">
                                 <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1241,8 +1214,6 @@
                         <div class="team-member-overlay">
                             <div class="team-social">
                                 <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1259,8 +1230,6 @@
                         <div class="team-member-overlay">
                             <div class="team-social">
                                 <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1275,7 +1244,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section">
+    <section class="testimonials-section" style="display: none;">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">What People Say</h2>
@@ -1486,15 +1455,15 @@
     <section id="contact-form" class="contact-section">
         <div class="contact-content">
             <!-- Brokers Section -->
-            <div class="contact-brokers">
-                <h3 class="brokers-title">Connect with Our Experts</h3>
+            <div class="contact-brokers" style="display: none;">
+                <h3 class="brokers-title">Connect with Our Advisor's</h3>
                 <p class="brokers-subtitle">Our dedicated team is ready to assist you</p>
                 
                 <div class="brokers-list">
                     <!-- Broker 1 -->
                     <div class="broker-card">
                         <div class="broker-avatar">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&amp;h=500&amp;fit=crop" alt="Layla Hassan" class="loaded">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop" alt="Layla Hassan">
                         </div>
                         <div class="broker-info">
                             <h4 class="broker-name">Layla Hassan</h4>
@@ -1667,12 +1636,12 @@
                             </div>
                             <div class="contact-info-text">
                                 <h4>Contact Info</h4>
-                                <p>+971 58 540 9697<br>info@lucidhills.com</p>
+                                <p>+971 50 107 0599<br>info@lucidhills.com</p>
                             </div>
                         </div>
                     </div>
                     
-                    <a href="https://maps.app.goo.gl/GYk6zD2MsEo98aS86" target="_blank" rel="noopener noreferrer" class="get-directions-btn">
+                    <a href="https://maps.app.goo.gl/9aYqhLrSbcRRqe3T9" target="_blank" rel="noopener noreferrer" class="get-directions-btn">
                         Get Directions <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -1998,8 +1967,37 @@
         });
     })();
     </script>
+
+    <!-- Floating Contact Sidebar Widget -->
+    <div class="floating-sidebar-widget" id="floatingSidebar">
+        <div class="sidebar-menu">
+            <a href="https://wa.me/971501070599" target="_blank" rel="noopener noreferrer" class="sidebar-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="tel:+971501070599" class="sidebar-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>Instant Call</span>
+            </a>
+            <a href="#contact-form" class="sidebar-item">
+                <i class="fas fa-envelope"></i>
+                <span>Get in Touch</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Floating Sidebar Widget
+        const floatingSidebar = document.getElementById('floatingSidebar');
+        
+        // Show sidebar on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                floatingSidebar.classList.add('visible');
+            } else {
+                floatingSidebar.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
-
 </html>
-
-

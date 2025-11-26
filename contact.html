@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Lucid Hills Properties</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/image-styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Brand fonts: Script (Great Vibes / Allura), Sans (Montserrat / Poppins), Serif (Cinzel) -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: 
+                linear-gradient(135deg, 
+                    rgba(189, 153, 117, 0.7) 0%, 
+                    rgba(189, 153, 117, 0.5) 30%,
+                    rgba(17, 41, 61, 0.8) 70%,
+                    rgba(17, 41, 61, 0.9) 100%
+                ),
+                url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=1080&fit=crop&q=80') center/cover no-repeat;
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(189, 153, 117, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(17, 41, 61, 0.3) 0%, transparent 40%);
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        .contact-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-hero h1 {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Information Section */
+        .contact-info-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .contact-info-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(17, 41, 61, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(189, 153, 117, 0.2);
+            border-color: rgba(189, 153, 117, 0.3);
+        }
+
+        .contact-card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--golden-accent) 0%, var(--golden-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(189, 153, 117, 0.3);
+        }
+
+        .contact-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-card p {
+            font-size: 1rem;
+            color: var(--medium-gray);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            color: var(--golden-accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--navy-blue);
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf0 100%);
+        }
+
+        .contact-form-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .form-intro {
+            position: sticky;
+            top: 120px;
+        }
+
+        .form-intro h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--navy-blue);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-intro p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .business-hours {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+        }
+
+        .business-hours h4 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--navy-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .business-hours p {
+            font-size: 1rem;
+            color: var(--medium-gray);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .business-hours strong {
+            color: var(--navy-blue);
+        }
+
+        .contact-form-container {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(17, 41, 61, 0.1);
+        }
+
+        .contact-form-container h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--navy-blue);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--golden-accent);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(189, 153, 117, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .phone-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .phone-input-group select {
+            flex: 0 0 120px;
+        }
+
+        .phone-input-group input {
+            flex: 1;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--golden-accent) 0%, var(--golden-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(189, 153, 117, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(189, 153, 117, 0.4);
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 0;
+            background: var(--white);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 600px;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .get-directions-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 80px;
+            padding: 14px 28px;
+            background: var(--golden-accent);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(189, 153, 117, 0.4);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .get-directions-btn:hover {
+            background: var(--golden-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(189, 153, 117, 0.6);
+        }
+
+        .get-directions-btn i {
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .get-directions-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Social Media Section */
+        .social-media-section {
+            padding: 80px 0;
+            background: var(--navy-blue);
+            text-align: center;
+        }
+
+        .social-media-section h3 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .social-media-section p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 70px;
+            height: 70px;
+            background: rgba(189, 153, 117, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--golden-accent);
+            transition: all 0.4s ease;
+            text-decoration: none;
+            border: 2px solid var(--golden-accent);
+        }
+
+        .social-link:hover {
+            background: var(--golden-accent);
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(189, 153, 117, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-form-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .form-intro {
+                position: static;
+            }
+
+            .contact-hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-form-container {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-input-group {
+                flex-direction: column;
+            }
+
+            .phone-input-group select {
+                flex: 1;
+            }
+        }
+
+        /* FAQ Section Styles */
+        .faq-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-header h2 {
+            font-size: 2.5rem;
+            color: #11293d;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .faq-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 1px solid rgba(189, 153, 117, 0.1);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 16px rgba(189, 153, 117, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #11293d;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #bd9975;
+        }
+
+        .faq-question span {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            color: #bd9975;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 28px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 28px 24px 28px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 60px 0;
+            }
+
+            .faq-header h2 {
+                font-size: 2rem;
+            }
+
+            .faq-header p {
+                font-size: 1rem;
+            }
+
+            .faq-question {
+                padding: 20px 20px;
+                font-size: 1rem;
+            }
+
+            .faq-answer {
+                padding: 0 20px;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 20px 20px 20px;
+            }
+
+            .faq-answer p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="page-loader" id="pageLoader">
+        <img src="Assets/white logo.png" alt="Lucid Hills" class="loader-logo">
+        <div class="loader-quote" id="loaderQuote"></div>
+        <div class="loader-progress">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Assets/OG logo.jpg" alt="Lucid Hills Logo">
+                <img src="Assets/White font.png" alt="Lucid Hills" class="nav-logo-text">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="properties.html" class="nav-link">Properties</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="management.html" class="nav-link">Management</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </div>
+            <a href="#contact-form" class="nav-cta-btn">Let's Talk →</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>Contact Us</h1>
+            <p>Get in touch with our team of real estate experts. We're here to help you find your dream property in Dubai.</p>
+        </div>
+    </section>
+
+    <!-- Contact Information Cards -->
+    <section class="contact-info-section">
+        <div class="contact-info-wrapper">
+            <div class="contact-cards-grid">
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Us</h3>
+                    <p>Deyaar Head Office Building<br>Office No.23, Unit 401, 4th Floor<br>Al Barsha 1 - Dubai, UAE</p>
+                    <a href="https://maps.app.goo.gl/9aYqhLrSbcRRqe3T9" target="_blank" rel="noopener noreferrer">Get Directions →</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p><a href="tel:+971501070599">+971 50 107 0599</a></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Available 9 AM - 6 PM (GST)</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:info@lucidhills.com">info@lucidhills.com</a></p>
+                    <p><a href="mailto:support@lucidhills.com">support@lucidhills.com</a></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">We'll respond within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="contact-form-wrapper">
+            <div class="form-intro">
+                <h2>Let's Start a Conversation</h2>
+                <p>Whether you're looking to buy, sell, or invest in Dubai real estate, our experienced team is ready to assist you. Fill out the form and we'll get back to you as soon as possible.</p>
+                
+                <div class="business-hours">
+                    <h4><i class="far fa-clock"></i> Business Hours</h4>
+                    <p><strong>Monday - Friday:</strong> <span>9:00 AM - 6:00 PM</span></p>
+                    <p><strong>Saturday:</strong> <span>10:00 AM - 4:00 PM</span></p>
+                    <p><strong>Sunday:</strong> <span>Closed</span></p>
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--golden-accent);">
+                        <i class="fas fa-info-circle"></i> Emergency support available 24/7
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <h3>Send Us a Message</h3>
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="a59d6031-6785-41e8-90d0-d0bc69f650d7">
+                    <input type="hidden" name="subject" value="New Contact Form Submission - Lucid Hills">
+                    <input type="hidden" name="from_name" value="Lucid Hills Contact Form">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="first_name" required placeholder="John">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name *</label>
+                            <input type="text" name="last_name" required placeholder="Doe">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" name="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <div class="phone-input-group">
+                                <select name="country_code">
+                                    <option value="+971">🇦🇪 +971</option>
+                                    <option value="+966">🇸🇦 +966</option>
+                                    <option value="+965">🇰🇼 +965</option>
+                                    <option value="+974">🇶🇦 +974</option>
+                                    <option value="+968">🇴🇲 +968</option>
+                                    <option value="+973">🇧🇭 +973</option>
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+91">🇮🇳 +91</option>
+                                    <option value="+86">🇨🇳 +86</option>
+                                </select>
+                                <input type="tel" name="phone" required placeholder="50 123 4567">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>I'm Interested In *</label>
+                        <select name="interest" required>
+                            <option value="">Select an option</option>
+                            <option value="Buying Property">Buying Property</option>
+                            <option value="Selling Property">Selling Property</option>
+                            <option value="Renting Property">Renting Property</option>
+                            <option value="Property Investment">Property Investment</option>
+                            <option value="Property Management">Property Management</option>
+                            <option value="Property Valuation">Property Valuation</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Message *</label>
+                        <textarea name="message" required placeholder="Tell us about your requirements..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.5730488883495!2d55.19396231501362!3d25.115192483938984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69bda7c80e01%3A0x1e7b5b5e5c5e5e5e!2sDeyaar%20Head%20Office!5e0!3m2!1sen!2sae!4v1729094400000!5m2!1sen!2sae" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <a href="https://www.google.com/maps/dir//Deyaar+Head+Office/@25.115192,55.1939623,17z" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="get-directions-btn">
+                <i class="fas fa-directions"></i>
+                Get Directions
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-header">
+                <h2>Got Questions? We've Got Answers</h2>
+                <p>Everything you need to know about buying property in Dubai, explained simply</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can foreigners buy property in Dubai?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! As a foreigner, you can own property outright in Dubai's freehold areas. This means it's 100% yours – you can sell it, rent it out, or pass it on to your family. We help international buyers like you find the perfect property and handle all the paperwork.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What are the payment plans available?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Great news – you don't need to pay everything upfront! Most developers offer flexible payment plans. For example, you might pay 20% upfront and the rest over time (that's an 80/20 plan). Some even let you continue payments after you move in. We'll help you find a plan that fits your budget.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Will my property make me money?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Dubai properties typically earn you 5-8% rental income each year. Think of it this way: if you buy a property for AED 1 million, you could earn AED 50,000-80,000 annually in rent. Plus, your property value often increases over time. It's a win-win!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What extra costs should I budget for?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Beyond the property price, budget for these one-time costs: 4% government transfer fee, around AED 2,000-4,000 for registration, and typically 2% for agent fees. If you're getting a mortgage, there'll be some bank fees too. We'll give you the exact breakdown for your property upfront – no surprises!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I live in Dubai if I buy property?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Buy a property worth AED 750,000+ and get a 2-year residence visa. Invest AED 2 million+ and get 5 years. Invest AED 5 million+ and you'll qualify for the prestigious 10-year Golden Visa. Your spouse and children can join you too!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How quickly can I own my property?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Super fast! For ready properties, you can own it in just 1-2 weeks. We'll help you choose, make an offer, transfer the deed, and get the keys. If you're buying off-plan (under construction), you'll pay in installments as they build, then get the keys when it's ready.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What's the difference between freehold and leasehold?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Freehold = it's yours forever! You own it completely and can do whatever you want with it. Leasehold = you own it for a set time (usually 99 years), then it goes back to the landowner. Good news: most properties we work with are freehold, so you own them outright!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I get a mortgage as a foreigner?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! UAE banks love lending to expats. If you live here, banks can finance up to 75% of the property price. If you're buying from abroad, expect 50-60% financing. We'll connect you with the best mortgage advisors who'll get you great rates.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do I have to pay property taxes every year?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No property taxes – that's one of Dubai's best perks! You'll only pay a yearly service charge for things like building maintenance, gym, pool, and security. This usually costs AED 5-25 per square foot annually. For a 1,000 sq ft apartment, that's around AED 5,000-25,000 per year.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What if I don't live in Dubai – can you manage my property?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>That's exactly what we're here for! We'll find great tenants, handle the paperwork, collect rent, fix any issues, and send you monthly updates. You just sit back and watch the money come in. It's truly hassle-free property ownership.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-media-section">
+        <div class="container">
+            <h3>Connect With Us</h3>
+            <p>Follow us on social media for the latest property updates and real estate insights</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61580970939133" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/lucidhillsproperties?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/bergen-crasto-26500a223" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://wa.me/971501070599" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo and Description -->
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <img src="Assets/OG logo.jpg" alt="Lucid Hills">
+                        <img src="Assets/White font.png" alt="Lucid Hills" class="footer-logo-text">
+                        <span class="logo-text">Lucid Hills</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner in UAE's luxury real estate market.
+                        We specialize in premium residential, commercial, and investment properties across Dubai, Abu Dhabi, and the Emirates.
+                    </p>
+                    
+                    <!-- Newsletter -->
+                    <div class="footer-newsletter">
+                        <h4>Get latest property update</h4>
+                        <form class="newsletter-form" id="newsletterForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="a59d6031-6785-41e8-90d0-d0bc69f650d7">
+                            <input type="hidden" name="subject" value="New Newsletter Subscription - Lucid Hills">
+                            <input type="hidden" name="from_name" value="Lucid Hills Newsletter">
+                            <input type="email" name="email" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="properties.html">Consulting</a></li>
+                        <li><a href="properties.html">Buying</a></li>
+                        <li><a href="properties.html">Selling</a></li>
+                        <li><a href="properties.html">Rent</a></li>
+                        <li><a href="contact.html">Security</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Our Company -->
+                <div class="footer-section">
+                    <h4>Our Company</h4>
+                    <ul>
+                        <li><a href="about.html">Awards</a></li>
+                        <li><a href="about.html">Responsibilities</a></li>
+                        <li><a href="about.html#team">Career</a></li>
+                        <li><a href="contact.html">Help</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <!-- Social Media Links -->
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61580970939133" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/lucidhillsproperties?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/bergen-crasto-26500a223" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="copyright">Copyright © 2025 All right reserved</p>
+                <p class="footer-made-by">Made by <a href="https://ryzupmarketing.com/" target="_blank" rel="noopener noreferrer">Ryzup Marketing</a></p>
+                <div class="footer-bottom-links">
+                    <a href="about.html">Privacy Policy</a>
+                    <a href="about.html">Terms of Use</a>
+                    <a href="about.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+
+    <!-- Form submit handler for Web3Forms with onscreen feedback -->
+    <div id="formMessage" class="form-message" style="display:none; position:fixed; right:20px; bottom:20px; background:rgba(17,41,61,0.95); color:#fff; padding:14px 18px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.4); z-index:9999;"></div>
+    <script>
+    (function(){
+        function showMessage(text, success){
+            var el = document.getElementById('formMessage');
+            el.textContent = text;
+            el.style.background = success ? 'linear-gradient(90deg,#2ecc71,#27ae60)' : 'linear-gradient(90deg,#e74c3c,#c0392b)';
+            el.style.display = 'block';
+            setTimeout(function(){ el.style.display = 'none'; }, 5000);
+        }
+
+        function handleSubmit(form){
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                var submitBtn = form.querySelector('[type="submit"]');
+                var origText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending...';
+
+                var data = new FormData(form);
+
+                fetch(form.action, {
+                    method: form.method || 'POST',
+                    body: data
+                }).then(function(resp){
+                    return resp.json();
+                }).then(function(json){
+                    if(json.success){
+                        showMessage('Message sent successfully. We\'ll get back to you soon!', true);
+                        form.reset();
+                    } else {
+                        showMessage(json.message || 'Submission failed. Please try again.', false);
+                    }
+                }).catch(function(err){
+                    console.error(err);
+                    showMessage('Network error. Please try again later.', false);
+                }).finally(function(){
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = origText;
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            var contactForm = document.getElementById('contactForm');
+            var newsletterForm = document.getElementById('newsletterForm');
+            
+            if(contactForm) handleSubmit(contactForm);
+            if(newsletterForm) handleSubmit(newsletterForm);
+        });
+    })();
+    </script>
+
+    <!-- Floating Contact Sidebar Widget -->
+    <div class="floating-sidebar-widget" id="floatingSidebar">
+        <div class="sidebar-menu">
+            <a href="https://wa.me/971501070599" target="_blank" rel="noopener noreferrer" class="sidebar-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="tel:+971501070599" class="sidebar-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>Instant Call</span>
+            </a>
+            <a href="#contact-form" class="sidebar-item">
+                <i class="fas fa-envelope"></i>
+                <span>Get in Touch</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Floating Sidebar Widget
+        const floatingSidebar = document.getElementById('floatingSidebar');
+        
+        // Show sidebar on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                floatingSidebar.classList.add('visible');
+            } else {
+                floatingSidebar.classList.remove('visible');
+            }
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                faqItems.forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

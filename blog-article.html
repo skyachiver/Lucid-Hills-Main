@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="article-title">Article - Lucid Hills Properties</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/image-styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Allura&family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Article Page Styles */
+        .article-hero {
+            position: relative;
+            height: 65vh;
+            min-height: 550px;
+            max-height: 700px;
+            background: #000;
+            overflow: hidden;
+            margin-top: 0;
+            padding-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article-hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.8;
+        }
+
+        .article-hero-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,0.5) 0%, 
+                rgba(0,0,0,0.4) 30%,
+                rgba(0,0,0,0.6) 60%,
+                rgba(0,0,0,0.9) 100%);
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 60px;
+            padding-top: 100px;
+        }
+
+        .article-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--golden-accent);
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .article-hero-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            font-weight: 700;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 30px;
+            color: rgba(255,255,255,0.95);
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-meta i {
+            color: var(--golden-accent);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .article-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+
+            .article-hero-title {
+                font-size: 2.2rem;
+            }
+
+            .article-hero-overlay {
+                padding: 40px 20px 30px;
+            }
+
+            .article-meta {
+                gap: 15px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Article Content */
+        .article-content-section {
+            padding: 80px 20px;
+            background: #ffffff;
+        }
+
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-body {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .article-body h2 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--navy-blue);
+            margin: 40px 0 20px;
+            font-weight: 700;
+        }
+
+        .article-body h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--navy-blue);
+            margin: 35px 0 15px;
+            font-weight: 700;
+        }
+
+        .article-body p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 25px 0;
+            padding-left: 30px;
+        }
+
+        .article-body li {
+            margin-bottom: 15px;
+        }
+
+        .article-highlight {
+            background: rgba(189, 153, 117, 0.1);
+            border-left: 4px solid var(--golden-accent);
+            padding: 25px 30px;
+            margin: 35px 0;
+            border-radius: 5px;
+        }
+
+        .article-highlight p {
+            margin: 0;
+            font-style: italic;
+            color: var(--navy-blue);
+        }
+
+        /* Related Articles */
+        .related-articles {
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, #f8f8f8 0%, #ffffff 100%);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        .related-card {
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(17, 41, 61, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(189, 153, 117, 0.2);
+        }
+
+        .related-card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .related-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .related-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .related-card-content {
+            padding: 25px;
+        }
+
+        .related-card-category {
+            color: var(--golden-accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .related-card-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .related-card-date {
+            color: var(--medium-gray);
+            font-size: 0.85rem;
+        }
+
+        /* Back to Blog Button */
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(189, 153, 117, 0.1);
+            color: var(--golden-accent);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-blog:hover {
+            background: var(--golden-accent);
+            color: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-hero {
+                margin-top: 80px;
+                height: 50vh;
+            }
+
+            .article-hero-title {
+                font-size: 2rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .article-body {
+                font-size: 1rem;
+            }
+
+            .article-body h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="page-loader" id="pageLoader">
+        <img src="Assets/white logo.png" alt="Lucid Hills" class="loader-logo">
+        <div class="loader-quote" id="loaderQuote"></div>
+        <div class="loader-progress">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Assets/OG logo.jpg" alt="Lucid Hills Logo">
+                <img src="Assets/White font.png" alt="Lucid Hills" class="nav-logo-text">
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="properties.html" class="nav-link">Properties</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="management.html" class="nav-link">Management</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <a href="index.html#contact-form" class="nav-cta-btn">Let's Talk →</a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Hero -->
+    <section class="article-hero">
+        <img id="hero-image" class="article-hero-image" src="" alt="Article">
+        <div class="article-hero-overlay">
+            <div class="article-hero-content">
+                <span id="hero-category" class="article-category"></span>
+                <h1 id="hero-title" class="article-hero-title"></h1>
+                <div class="article-meta">
+                    <span><i class="far fa-calendar"></i> <span id="hero-date"></span></span>
+                    <span><i class="far fa-user"></i> <span id="hero-author"></span></span>
+                    <span><i class="far fa-clock"></i> <span id="hero-read-time"></span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content-section">
+        <div class="article-container">
+            <a href="blog.html" class="back-to-blog">
+                <i class="fas fa-arrow-left"></i> Back to All Articles
+            </a>
+            <div id="article-content" class="article-body">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="related-articles">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Related Articles</h2>
+                <p class="section-subtitle">Continue exploring our insights</p>
+            </div>
+            <div id="related-articles" class="related-grid">
+                <!-- Related articles will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo and Description -->
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <img src="Assets/OG logo.jpg" alt="Lucid Hills">
+                        <img src="Assets/White font.png" alt="Lucid Hills" class="footer-logo-text">
+                        <span class="logo-text">Lucid Hills</span>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner in UAE's luxury real estate market.
+                        We specialize in premium residential, commercial, and investment properties across Dubai, Abu Dhabi, and the Emirates.
+                    </p>
+                    
+                    <!-- Newsletter -->
+                    <div class="footer-newsletter">
+                        <h4>Get latest property update</h4>
+                        <form class="newsletter-form" id="newsletterForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="a59d6031-6785-41e8-90d0-d0bc69f650d7">
+                            <input type="hidden" name="subject" value="New Newsletter Subscription - Lucid Hills">
+                            <input type="hidden" name="from_name" value="Lucid Hills Newsletter">
+                            <input type="email" name="email" placeholder="Enter your email" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="properties.html">Consulting</a></li>
+                        <li><a href="properties.html">Buying</a></li>
+                        <li><a href="properties.html">Selling</a></li>
+                        <li><a href="properties.html">Rent</a></li>
+                        <li><a href="#contact">Security</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Our Company -->
+                <div class="footer-section">
+                    <h4>Our Company</h4>
+                    <ul>
+                        <li><a href="about.html">Awards</a></li>
+                        <li><a href="about.html">Responsibilities</a></li>
+                        <li><a href="about.html#team">Career</a></li>
+                        <li><a href="#contact">Help</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    
+                    <!-- Social Media Links -->
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61580970939133" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/lucidhillsproperties?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/bergen-crasto-26500a223" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="copyright">Copyright © 2025 All right reserved</p>
+                <p class="footer-made-by">Made by <a href="https://ryzupmarketing.com/" target="_blank" rel="noopener noreferrer">Ryzup Marketing</a></p>
+                <div class="footer-bottom-links">
+                    <a href="about.html">Privacy Policy</a>
+                    <a href="about.html">Terms of Use</a>
+                    <a href="about.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/blog-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            if (articleId && typeof blogArticles !== 'undefined') {
+                const article = blogArticles.find(a => a.id === articleId);
+                
+                if (article) {
+                    // Update page title
+                    document.getElementById('article-title').textContent = article.title + ' - Lucid Hills';
+                    
+                    // Update hero section
+                    document.getElementById('hero-image').src = article.image;
+                    document.getElementById('hero-category').textContent = article.category;
+                    document.getElementById('hero-title').textContent = article.title;
+                    document.getElementById('hero-date').textContent = article.date;
+                    document.getElementById('hero-author').textContent = article.author;
+                    document.getElementById('hero-read-time').textContent = article.readTime;
+                    
+                    // Update content
+                    document.getElementById('article-content').innerHTML = article.content;
+                    
+                    // Load related articles
+                    loadRelatedArticles(article.category, articleId);
+                } else {
+                    window.location.href = 'blog.html';
+                }
+            } else {
+                window.location.href = 'blog.html';
+            }
+
+            function loadRelatedArticles(category, currentId) {
+                const related = blogArticles.filter(a => 
+                    a.category === category && a.id !== currentId
+                ).slice(0, 3);
+
+                const container = document.getElementById('related-articles');
+                container.innerHTML = related.map(article => `
+                    <div class="related-card" onclick="window.location.href='blog-article.html?id=${article.id}'">
+                        <div class="related-card-image">
+                            <img src="${article.image}" alt="${article.title}">
+                        </div>
+                        <div class="related-card-content">
+                            <div class="related-card-category">${article.category}</div>
+                        <h3 class="related-card-title">${article.title}</h3>
+                        <div class="related-card-date">${article.date}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    });
+    </script>
+
+    <!-- Floating Contact Sidebar Widget -->
+    <div class="floating-sidebar-widget" id="floatingSidebar">
+        <div class="sidebar-menu">
+            <a href="https://wa.me/971501070599" target="_blank" rel="noopener noreferrer" class="sidebar-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="tel:+971501070599" class="sidebar-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>Instant Call</span>
+            </a>
+            <a href="#contact-form" class="sidebar-item">
+                <i class="fas fa-envelope"></i>
+                <span>Get in Touch</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Floating Sidebar Widget
+        const floatingSidebar = document.getElementById('floatingSidebar');
+        
+        // Show sidebar on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                floatingSidebar.classList.add('visible');
+            } else {
+                floatingSidebar.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
