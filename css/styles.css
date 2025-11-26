@@ -2559,6 +2559,39 @@ section {
     margin-bottom: 18px;
 }
 
+.form-row-layout {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.form-row-layout .form-label {
+    padding-top: 8px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.form-input-group {
+    width: 100%;
+}
+
+.form-step-1,
+.form-step-2 {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .form-label {
     display: block;
     font-size: 0.88rem;
@@ -2862,6 +2895,16 @@ section {
     background: white;
 }
 
+.form-step-2 input[type="tel"]::-webkit-inner-spin-button,
+.form-step-2 input[type="tel"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-step-2 input[type="tel"] {
+    -moz-appearance: textfield;
+}
+
 .form-step-2 input:focus,
 .form-step-2 textarea:focus {
     outline: none;
@@ -2878,6 +2921,23 @@ section {
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+.country-code-select {
+    flex: 0 0 120px;
+    padding: 12px 10px;
+    border: 2px solid #e8ecf0;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.country-code-select:focus {
+    outline: none;
+    border-color: var(--golden-accent);
+    background: #fafafa;
 }
 
 .phone-prefix {

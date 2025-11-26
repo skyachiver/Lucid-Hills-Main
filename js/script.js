@@ -1763,8 +1763,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Scroll to form section
+            const formSection = document.querySelector('.buyer-seller-section');
+            if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         });
     }
 
@@ -1774,7 +1777,12 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             step2Form.style.display = 'none';
             step1Form.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Scroll to form section
+            const formSection = document.querySelector('.buyer-seller-section');
+            if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         });
     }
 
@@ -1806,8 +1814,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            if (!phone || phone.length !== 9) {
-                alert('Please enter a valid 9-digit phone number');
+            if (!phone || phone.length < 7) {
+                alert('Please enter a valid phone number');
                 return;
             }
 
@@ -1861,7 +1869,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const result = await response.json();
 
                 if (result.success) {
-                    alert('Thank you! Your property inquiry has been submitted successfully. We will contact you shortly.');
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #11293d; color: white; padding: 30px 50px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 10000; text-align: center; font-size: 1.1rem; font-weight: 600;';
+                    successMessage.innerHTML = '<div style="font-size: 3rem; margin-bottom: 15px; color: #bd9975;">✓</div><div>Thank you! Your property inquiry has been submitted successfully.</div><div style="font-size: 0.95rem; margin-top: 10px; opacity: 0.9;">We will contact you shortly.</div>';
+                    document.body.appendChild(successMessage);
+                    
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 4000);
                     
                     // Reset forms
                     form.reset();

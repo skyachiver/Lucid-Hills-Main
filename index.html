@@ -826,32 +826,38 @@
                 <div class="property-inquiry-form">
                 <form id="propertyInquiryForm" class="form-step-1">
                     <!-- I am looking to -->
-                    <div class="form-section">
+                    <div class="form-section form-row-layout">
                         <label class="form-label">I am looking to</label>
-                        <div class="toggle-buttons">
-                            <button type="button" class="toggle-btn active" data-action="sell">Sell</button>
-                            <button type="button" class="toggle-btn" data-action="rent">Rent</button>
+                        <div class="form-input-group">
+                            <div class="toggle-buttons">
+                                <button type="button" class="toggle-btn active" data-action="sell">Sell</button>
+                                <button type="button" class="toggle-btn" data-action="rent">Rent</button>
+                            </div>
+                            <input type="hidden" name="action" value="sell">
                         </div>
-                        <input type="hidden" name="action" value="sell">
                     </div>
 
                     <!-- Rent Frequency (hidden by default) -->
-                    <div class="form-section" id="rentFrequencySection" style="display: none;">
+                    <div class="form-section form-row-layout" id="rentFrequencySection" style="display: none;">
                         <label class="form-label">Rent Frequency</label>
-                        <div class="toggle-buttons">
-                            <button type="button" class="toggle-btn rent-frequency-btn active" data-frequency="yearly">Yearly</button>
-                            <button type="button" class="toggle-btn rent-frequency-btn" data-frequency="monthly">Monthly</button>
+                        <div class="form-input-group">
+                            <div class="toggle-buttons">
+                                <button type="button" class="toggle-btn rent-frequency-btn active" data-frequency="yearly">Yearly</button>
+                                <button type="button" class="toggle-btn rent-frequency-btn" data-frequency="monthly">Monthly</button>
+                            </div>
+                            <input type="hidden" name="rentFrequency" value="yearly">
                         </div>
-                        <input type="hidden" name="rentFrequency" value="yearly">
                     </div>
 
                     <!-- Location -->
-                    <div class="form-section">
+                    <div class="form-section form-row-layout">
                         <label class="form-label">Location<span class="required">*</span></label>
-                        <div class="input-with-icon location-wrapper">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <input type="text" id="locationInput" name="location" placeholder="Enter location, building or community" required autocomplete="off">
-                            <div class="location-dropdown" id="locationDropdown" style="display: none;"></div>
+                        <div class="form-input-group">
+                            <div class="input-with-icon location-wrapper">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="locationInput" name="location" placeholder="Enter location, building or community" required autocomplete="off">
+                                <div class="location-dropdown" id="locationDropdown" style="display: none;"></div>
+                            </div>
                         </div>
                     </div>
 
@@ -938,31 +944,57 @@
                     
                     <div class="form-section">
                         <label class="form-label" id="priceLabel">Expected Price (AED)<span class="required">*</span></label>
-                        <input type="number" name="expectedPrice" placeholder="Enter expected price" required>
+                        <input type="number" id="expectedPrice" name="expectedPrice" placeholder="Enter expected price" required>
                     </div>
                     
                     <div class="form-section">
                         <label class="form-label">Notes</label>
-                        <textarea name="notes" rows="4" placeholder="Enter your notes here"></textarea>
+                        <textarea id="notes" name="notes" rows="4" placeholder="Enter your notes here"></textarea>
                     </div>
                     
                     <div class="form-section">
                         <label class="form-label" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;">Contact Details</label>
                         
                         <div class="form-field" style="margin-bottom: 15px;">
-                            <input type="text" name="name" placeholder="Name*" required>
+                            <input type="text" id="contactName" name="name" placeholder="Name*" required>
                         </div>
                         
                         <div class="form-field" style="margin-bottom: 15px;">
-                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="email" name="email" id="contactEmail" placeholder="Email" required>
                         </div>
                         
-                        <div class="form-field phone-field">
-                            <div class="phone-prefix">
-                                <img src="https://flagcdn.com/w40/ae.png" alt="UAE" style="width: 20px; margin-right: 8px;">
-                                <span>+971</span>
-                            </div>
-                            <input type="tel" name="phone" placeholder="Phone number" required pattern="[0-9]{9}">
+                        <div class="form-field phone-field" style="margin-bottom: 15px;">
+                            <select id="countryCodeSelect" name="country_code" class="country-code-select" style="flex: 0 0 120px; padding: 12px 10px; border: 2px solid #e8ecf0; border-radius: 8px; font-size: 0.88rem; background: white; cursor: pointer;">
+                                <option value="+971" data-flag="🇦🇪" data-name="UAE">🇦🇪 UAE +971</option>
+                                <option value="+966" data-flag="🇸🇦" data-name="Saudi Arabia">🇸🇦 Saudi Arabia +966</option>
+                                <option value="+965" data-flag="🇰🇼" data-name="Kuwait">🇰🇼 Kuwait +965</option>
+                                <option value="+974" data-flag="🇶🇦" data-name="Qatar">🇶🇦 Qatar +974</option>
+                                <option value="+968" data-flag="🇴🇲" data-name="Oman">🇴🇲 Oman +968</option>
+                                <option value="+973" data-flag="🇧🇭" data-name="Bahrain">🇧🇭 Bahrain +973</option>
+                                <option value="+1" data-flag="🇺🇸" data-name="USA">🇺🇸 USA +1</option>
+                                <option value="+44" data-flag="🇬🇧" data-name="UK">🇬🇧 UK +44</option>
+                                <option value="+91" data-flag="🇮🇳" data-name="India">🇮🇳 India +91</option>
+                                <option value="+86" data-flag="🇨🇳" data-name="China">🇨🇳 China +86</option>
+                                <option value="+33" data-flag="🇫🇷" data-name="France">🇫🇷 France +33</option>
+                                <option value="+49" data-flag="🇩🇪" data-name="Germany">🇩🇪 Germany +49</option>
+                                <option value="+39" data-flag="🇮🇹" data-name="Italy">🇮🇹 Italy +39</option>
+                                <option value="+34" data-flag="🇪🇸" data-name="Spain">🇪🇸 Spain +34</option>
+                                <option value="+31" data-flag="🇳🇱" data-name="Netherlands">🇳🇱 Netherlands +31</option>
+                                <option value="+32" data-flag="🇧🇪" data-name="Belgium">🇧🇪 Belgium +32</option>
+                                <option value="+41" data-flag="🇨🇭" data-name="Switzerland">🇨🇭 Switzerland +41</option>
+                                <option value="+43" data-flag="🇦🇹" data-name="Austria">🇦🇹 Austria +43</option>
+                                <option value="+45" data-flag="🇩🇰" data-name="Denmark">🇩🇰 Denmark +45</option>
+                                <option value="+46" data-flag="🇸🇪" data-name="Sweden">🇸🇪 Sweden +46</option>
+                                <option value="+47" data-flag="🇳🇴" data-name="Norway">🇳🇴 Norway +47</option>
+                                <option value="+358" data-flag="🇫🇮" data-name="Finland">🇫🇮 Finland +358</option>
+                                <option value="+7" data-flag="🇷🇺" data-name="Russia">🇷🇺 Russia +7</option>
+                                <option value="+380" data-flag="🇺🇦" data-name="Ukraine">🇺🇦 Ukraine +380</option>
+                                <option value="+48" data-flag="🇵🇱" data-name="Poland">🇵🇱 Poland +48</option>
+                                <option value="+90" data-flag="🇹🇷" data-name="Turkey">🇹🇷 Turkey +90</option>
+                                <option value="+30" data-flag="🇬🇷" data-name="Greece">🇬🇷 Greece +30</option>
+                                <option value="+351" data-flag="🇵🇹" data-name="Portugal">🇵🇹 Portugal +351</option>
+                            </select>
+                            <input type="tel" id="contactPhone" name="phone" placeholder="50 123 4567" required pattern="[0-9]{7,15}" maxlength="15" style="flex: 1;">
                         </div>
                     </div>
                     
